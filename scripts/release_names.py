@@ -13,6 +13,17 @@ LICENSE = ("This Font Software is licensed under the SIL Open Font License, Vers
            "This license is available with a FAQ at: https://openfontlicense.org")
 
 
+def short_family(fam):
+    """Windows cuts legacy family names (nameID 1) at 31 characters, so long ones are
+    shortened step by step; the full name stays in the typographic family (nameID 16)."""
+    for a, b in ((" Impression", " Imp"), ("No. ", ""), ("Two Lines ", "2L ")):
+        if len(fam) <= 31:
+            break
+        fam = fam.replace(a, b)
+    assert len(fam) <= 31, fam
+    return fam
+
+
 def describe(fn):
     imp = "Impression" in fn
     return ("Reconstructed from William Caslon's specimen sheet of 1734 (McGill University Library, "
@@ -28,7 +39,8 @@ def main():
         name = f["name"]
         fam = name.getDebugName(1)
         style = name.getDebugName(2)
-        recs = {0: COPYRIGHT, 3: f"{VERSION};{fam.replace(' ', '')}-{style}", 5: f"Version {VERSION}",
+        short = short_family(fam)
+        recs = {0: COPYRIGHT, 1: short, 16: fam, 17: style, 3: f"{VERSION};{fam.replace(' ', '')}-{style}", 5: f"Version {VERSION}",
                 10: describe(os.path.basename(fp)), 11: URL, 13: LICENSE, 14: "https://openfontlicense.org"}
         for nid, s in recs.items():
             name.setName(s, nid, 3, 1, 0x409)
