@@ -1,0 +1,41 @@
+{
+ "name": "lp1_italic",
+ "family": "Caslon 1734 Long Primer No. 1",
+ "style": "Italic",
+ "trans": "transcriptions/longprimer1_italic.txt",
+ "images": {
+  "0": "work/lp1ital_p0.png",
+  "1": "work/lp1ital_p1.png",
+  "2": "work/lp1ital_p2.png"
+ },
+ "boxes": {
+  "0": [
+   0,
+   0,
+   2344,
+   690
+  ],
+  "1": [
+   0,
+   0,
+   2344,
+   690
+  ],
+  "2": [
+   0,
+   0,
+   2344,
+   690
+  ]
+ },
+ "ntext": 8,
+ "skip_segment": true,
+ "start_avg": "work/pica_italic_avg10",
+ "borrow": "&!:work/pica_italic_avg10:0.744,-!:work/pica_italic_avg10:0.744,.!:work/pica_italic_avg10:0.744,?!:work/pica_italic_avg10:0.744,A!:work/pica_italic_avg10:0.744,B!:work/pica_italic_avg10:0.744,C!:work/pica_italic_avg10:0.744,D!:work/pica_italic_avg10:0.744,E!:work/pica_italic_avg10:0.744,F!:work/pica_italic_avg10:0.744,G!:work/pica_italic_avg10:0.744,H!:work/pica_italic_avg10:0.744,I!:work/pica_italic_avg10:0.744,J!:work/pica_italic_avg10:0.744,K!:work/pica_italic_avg10:0.744,L!:work/pica_italic_avg10:0.744,M!:work/pica_italic_avg10:0.744,N!:work/pica_italic_avg10:0.744,O!:work/pica_italic_avg10:0.744,P!:work/pica_italic_avg10:0.744,Q!:work/pica_italic_avg10:0.744,R!:work/pica_italic_avg10:0.744,S!:work/pica_italic_avg10:0.744,T!:work/pica_italic_avg10:0.744,U!:work/pica_italic_avg10:0.744,V!:work/pica_italic_avg10:0.744,W!:work/pica_italic_avg10:0.744,X!:work/pica_italic_avg10:0.744,Y!:work/pica_italic_avg10:0.744,Z!:work/pica_italic_avg10:0.744,a!:work/pica_italic_avg10:0.744,b!:work/pica_italic_avg10:0.744,c!:work/pica_italic_avg10:0.744,d!:work/pica_italic_avg10:0.744,e!:work/pica_italic_avg10:0.744,f!:work/pica_italic_avg10:0.744,g!:work/pica_italic_avg10:0.744,h!:work/pica_italic_avg10:0.744,i!:work/pica_italic_avg10:0.744,j!:work/pica_italic_avg10:0.744,k!:work/pica_italic_avg10:0.744,l!:work/pica_italic_avg10:0.744,m!:work/pica_italic_avg10:0.744,n!:work/pica_italic_avg10:0.744,o!:work/pica_italic_avg10:0.744,p!:work/pica_italic_avg10:0.744,q!:work/pica_italic_avg10:0.744,r!:work/pica_italic_avg10:0.744,s!:work/pica_italic_avg10:0.744,t!:work/pica_italic_avg10:0.744,u!:work/pica_italic_avg10:0.744,v!:work/pica_italic_avg10:0.744,w!:work/pica_italic_avg10:0.744,x!:work/pica_italic_avg10:0.744,y!:work/pica_italic_avg10:0.744,z!:work/pica_italic_avg10:0.744,ë!:work/pica_italic_avg10:0.744,î!:work/pica_italic_avg10:0.744,ſ!:work/pica_italic_avg10:0.744,ſi!:work/pica_italic_avg10:0.744,ſt!:work/pica_italic_avg10:0.744,ſſi!:work/pica_italic_avg10:0.744",
+ "synth": "ct:c+t,ſſ:ſ+ſ,fi:f+i,æ:a+e,Æ:A+E",
+ "borrow_all": "Q!:work/pica_italic_avg10:0.744",
+ "rounds": 3,
+ "slant": 19.0,
+ "prefer_seg": true,
+ "supp": "work/k85_lp1_italic/n*,work/khi/n*,work/mti/n*,work/lci/n*,work/gei/n*,work/shi/n*,work/sci/n*,work/cbi/n*,work/cmi/n*,work/sri/n*,work/cpi/n*"
+}

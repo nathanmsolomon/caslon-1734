@@ -1,0 +1,6 @@
+source/
+work/
+scratch/
+proofs/
+__pycache__/
+*.pyc

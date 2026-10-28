@@ -1,0 +1,39 @@
+{
+ "name": "gp_italic",
+ "family": "Caslon 1734 Great Primer",
+ "style": "Italic",
+ "trans": "transcriptions/greatprimer_italic.txt",
+ "images": {
+  "0": "work/gpital_p0.png",
+  "1": "work/gpital_p1.png",
+  "2": "work/gpital_p2.png"
+ },
+ "boxes": {
+  "0": [
+   0,
+   0,
+   2465,
+   935
+  ],
+  "1": [
+   0,
+   0,
+   2465,
+   935
+  ],
+  "2": [
+   0,
+   0,
+   2465,
+   935
+  ]
+ },
+ "ntext": 6,
+ "skip_segment": true,
+ "start_avg": "work/eital_avg4",
+ "borrow": "-!:work/eital_avg4:1.21,?!:work/eital_avg4:1.21,A!:work/eital_avg4:1.21,B!:work/eital_avg4:1.21,C!:work/eital_avg4:1.21,D!:work/eital_avg4:1.21,E!:work/eital_avg4:1.21,F!:work/eital_avg4:1.21,G!:work/eital_avg4:1.21,H!:work/eital_avg4:1.21,I!:work/eital_avg4:1.21,J!:work/eital_avg4:1.21,K!:work/eital_avg4:1.21,L!:work/eital_avg4:1.21,M!:work/eital_avg4:1.21,N!:work/eital_avg4:1.21,O!:work/eital_avg4:1.21,P!:work/eital_avg4:1.21,Q!:work/eital_avg4:1.21,R!:work/eital_avg4:1.21,S!:work/eital_avg4:1.21,T!:work/eital_avg4:1.21,U!:work/eital_avg4:1.21,V!:work/eital_avg4:1.21,a!:work/eital_avg4:1.21,b!:work/eital_avg4:1.21,c!:work/eital_avg4:1.21,ct!:work/eital_avg4:1.21,d!:work/eital_avg4:1.21,e!:work/eital_avg4:1.21,f!:work/eital_avg4:1.21,ff!:work/eital_avg4:1.21,fi!:work/eital_avg4:1.21,g!:work/eital_avg4:1.21,h!:work/eital_avg4:1.21,i!:work/eital_avg4:1.21,j!:work/eital_avg4:1.21,l!:work/eital_avg4:1.21,m!:work/eital_avg4:1.21,n!:work/eital_avg4:1.21,o!:work/eital_avg4:1.21,p!:work/eital_avg4:1.21,q!:work/eital_avg4:1.21,r!:work/eital_avg4:1.21,s!:work/eital_avg4:1.21,t!:work/eital_avg4:1.21,u!:work/eital_avg4:1.21,v!:work/eital_avg4:1.21,æ!:work/eital_avg4:1.21,ſ!:work/eital_avg4:1.21,ſi!:work/eital_avg4:1.21,ſt!:work/eital_avg4:1.21,ſſi!:work/eital_avg4:1.21",
+ "rounds": 3,
+ "slant": 21.5,
+ "borrow_all": "Q!:work/eital_avg4:1.21,ê:work/gp_roman_avg3:1.0",
+ "supp": "work/caribi/n*,work/caribXi/n*,work/caribYi/n*,work/k85_gp_italic/n*,work/dki/n*"
+}

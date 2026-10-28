@@ -1,0 +1,31 @@
+{
+ "name": "lp1_roman",
+ "family": "Caslon 1734 Long Primer No. 1",
+ "style": "Roman",
+ "trans": "transcriptions/longprimer1_roman.txt",
+ "boxes": {
+  "1": [
+   2770,
+   8255,
+   4880,
+   8980
+  ],
+  "0": [
+   2740,
+   8212,
+   4850,
+   8937
+  ],
+  "2": [
+   2992,
+   8456,
+   5102,
+   9181
+  ]
+ },
+ "ntext": 8,
+ "borrow_all": "Q!:work/pica_roman_avg3:0.85",
+ "rounds": 3,
+ "supp": "work/k85_lp1_roman/n*,work/kh/n*,work/mt/n*,work/lc/n*,work/ge/n*,work/sh/n*,work/sc/n*,work/cb/n*,work/cm/n*,work/sr/n*,work/cp/n*",
+ "extra": "work/lp1_sc_avg"
+}

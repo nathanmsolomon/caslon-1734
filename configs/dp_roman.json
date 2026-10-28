@@ -1,0 +1,32 @@
+{
+ "name": "dp_roman",
+ "family": "Caslon 1734 Double Pica",
+ "style": "Roman",
+ "trans": "transcriptions/doublepica_roman.txt",
+ "boxes": {
+  "1": [
+   2760,
+   2068,
+   4825,
+   2970
+  ],
+  "0": [
+   2788,
+   1944,
+   4853,
+   2846
+  ],
+  "2": [
+   3000,
+   2212,
+   5065,
+   3114
+  ]
+ },
+ "ntext": 4,
+ "rounds": 3,
+ "borrow_all": "Q!:work/english_avg7:1.5",
+ "borrow": "A!:work/english_avg7:1.5,B!:work/english_avg7:1.5,C!:work/english_avg7:1.5,D!:work/english_avg7:1.5,E!:work/english_avg7:1.5,F!:work/english_avg7:1.5,G!:work/english_avg7:1.5,H!:work/english_avg7:1.5,I!:work/english_avg7:1.5,J!:work/english_avg7:1.5,K!:work/english_avg7:1.5,L!:work/english_avg7:1.5,M!:work/english_avg7:1.5,N!:work/english_avg7:1.5,O!:work/english_avg7:1.5,P!:work/english_avg7:1.5,Q!:work/english_avg7:1.5,R!:work/english_avg7:1.5,S!:work/english_avg7:1.5,T!:work/english_avg7:1.5,U!:work/english_avg7:1.5,V!:work/english_avg7:1.5,W!:work/english_avg7:1.5,X!:work/english_avg7:1.5,Y!:work/english_avg7:1.5,Z!:work/english_avg7:1.5",
+ "specimen": "work/spec_dp/*",
+ "supp": "work/wgl/n*"
+}

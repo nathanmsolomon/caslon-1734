@@ -1,0 +1,32 @@
+{
+ "name": "gp_roman",
+ "family": "Caslon 1734 Great Primer",
+ "style": "Roman",
+ "trans": "transcriptions/greatprimer_roman.txt",
+ "boxes": {
+  "0": [
+   2748,
+   3040,
+   4853,
+   4040
+  ],
+  "1": [
+   2730,
+   3160,
+   4835,
+   4160
+  ],
+  "2": [
+   2968,
+   3320,
+   5073,
+   4320
+  ]
+ },
+ "ntext": 6,
+ "rounds": 3,
+ "borrow_all": "Q!:work/english_avg7:1.21",
+ "borrow": "A!:work/english_avg7:1.21,B!:work/english_avg7:1.21,C!:work/english_avg7:1.21,D!:work/english_avg7:1.21,E!:work/english_avg7:1.21,F!:work/english_avg7:1.21,G!:work/english_avg7:1.21,H!:work/english_avg7:1.21,I!:work/english_avg7:1.21,J!:work/english_avg7:1.21,K!:work/english_avg7:1.21,L!:work/english_avg7:1.21,M!:work/english_avg7:1.21,N!:work/english_avg7:1.21,O!:work/english_avg7:1.21,P!:work/english_avg7:1.21,Q!:work/english_avg7:1.21,R!:work/english_avg7:1.21,S!:work/english_avg7:1.21,T!:work/english_avg7:1.21,U!:work/english_avg7:1.21,V!:work/english_avg7:1.21,W!:work/english_avg7:1.21,X!:work/english_avg7:1.21,Y!:work/english_avg7:1.21,Z!:work/english_avg7:1.21",
+ "supp": "work/carib/n*,work/caribX/n*,work/caribY/n*,work/k85_gp_roman/n*,work/dk/n*",
+ "extra": "work/gp_sc_avg"
+}

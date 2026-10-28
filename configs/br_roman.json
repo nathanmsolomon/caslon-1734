@@ -1,0 +1,37 @@
+{
+ "name": "br_roman",
+ "family": "Caslon 1734 Brevier",
+ "style": "Roman",
+ "trans": "transcriptions/brevier_roman.txt",
+ "boxes": {
+  "1": [
+   2800,
+   9965,
+   4900,
+   10540
+  ],
+  "0": [
+   2756,
+   9932,
+   4856,
+   10507
+  ],
+  "2": [
+   3008,
+   10196,
+   5108,
+   10771
+  ]
+ },
+ "ntext": 8,
+ "borrow_all": "Q!:work/pica_roman_avg3:0.636",
+ "rounds": 3,
+ "note": "low fidelity: x-height 28 px at 600 ppi",
+ "supp": "work/k85_br_roman/n*,work/juv/n*,work/eg/n*",
+ "relabel": {
+  "line": 8,
+  "map": "S>T,T>V,V>U,U>W,W>X,X>Y,Y>Z",
+  "drop": "Z",
+  "note": "Oct 23: labels on the alphabet line slid after S and T merged (checked by eye in all 3 copies); replaces the old remap in finalize.sh"
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "name": "tle_italic",
+ "family": "Caslon 1734 Two Lines English",
+ "style": "Italic",
+ "trans": "transcriptions/twolinesenglish_italic.txt",
+ "images": {
+  "0": "work/tleital_p0.png",
+  "1": "work/tleital_p1.png",
+  "2": "work/tleital_p2.png"
+ },
+ "boxes": {
+  "0": [
+   0,
+   0,
+   2528,
+   775
+  ],
+  "1": [
+   0,
+   0,
+   2528,
+   775
+  ],
+  "2": [
+   0,
+   0,
+   2528,
+   775
+  ]
+ },
+ "ntext": 3,
+ "skip_segment": true,
+ "start_avg": "work/dp_italic_avg3",
+ "borrow": "-!:work/dp_italic_avg3:1.414,?!:work/dp_italic_avg3:1.414,A!:work/dp_italic_avg3:1.414,B!:work/dp_italic_avg3:1.414,C!:work/dp_italic_avg3:1.414,D!:work/dp_italic_avg3:1.414,E!:work/dp_italic_avg3:1.414,F!:work/dp_italic_avg3:1.414,G!:work/dp_italic_avg3:1.414,H!:work/dp_italic_avg3:1.414,I!:work/dp_italic_avg3:1.414,J!:work/dp_italic_avg3:1.414,K!:work/dp_italic_avg3:1.414,L!:work/dp_italic_avg3:1.414,M!:work/dp_italic_avg3:1.414,N!:work/dp_italic_avg3:1.414,O!:work/dp_italic_avg3:1.414,Q!:work/dp_italic_avg3:1.414,a!:work/dp_italic_avg3:1.414,b!:work/dp_italic_avg3:1.414,c!:work/dp_italic_avg3:1.414,d!:work/dp_italic_avg3:1.414,e!:work/dp_italic_avg3:1.414,f!:work/dp_italic_avg3:1.414,ff!:work/dp_italic_avg3:1.414,fi!:work/dp_italic_avg3:1.414,i!:work/dp_italic_avg3:1.414,j!:work/dp_italic_avg3:1.414,l!:work/dp_italic_avg3:1.414,m!:work/dp_italic_avg3:1.414,n!:work/dp_italic_avg3:1.414,o!:work/dp_italic_avg3:1.414,p!:work/dp_italic_avg3:1.414,q!:work/dp_italic_avg3:1.414,r!:work/dp_italic_avg3:1.414,s!:work/dp_italic_avg3:1.414,t!:work/dp_italic_avg3:1.414,u!:work/dp_italic_avg3:1.414,ſ!:work/dp_italic_avg3:1.414,ſt!:work/dp_italic_avg3:1.414",
+ "borrow_all": "Q!:work/dp_italic_avg3:1.414",
+ "rounds": 3,
+ "slant": 23.5,
+ "prefer_seg": true
+}

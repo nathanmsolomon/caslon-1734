@@ -1,0 +1,30 @@
+{
+ "name": "fc_roman",
+ "family": "Caslon 1734 French Cannon",
+ "style": "Roman",
+ "trans": "transcriptions/frenchcannon_roman.txt",
+ "boxes": {
+  "1": [
+   600,
+   4550,
+   2800,
+   5700
+  ],
+  "0": [
+   584,
+   4376,
+   2784,
+   5526
+  ],
+  "2": [
+   832,
+   4720,
+   3032,
+   5870
+  ]
+ },
+ "ntext": 3,
+ "borrow_all": "Q!:work/dp_roman_avg3:2.386,C:work/dp_roman_avg3:2.386",
+ "rounds": 3,
+ "prefer_seg": true
+}

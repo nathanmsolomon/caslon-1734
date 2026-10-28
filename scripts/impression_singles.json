@@ -1,0 +1,58 @@
+{
+ "_note": "Oct 28 2026: book-only glyphs with 1-4 impressions, each checked by eye on work/thinprobe_<face>/review.png against neighbouring sizes; Impression fonts only (build.py leaves 'single' glyphs out of the clean fonts). Rejected on review: misreads (DP italic S V x, Brevier/Pica O as Œ, A as Æ, LP1 italic æ as œ, GP roman o as ſb), wrong-fount sorts (LP1 roman ffi and LP1 italic ffi), and impressions carrying a neighbour's ink (SP1 italic ffi, Pica roman ffi).",
+ "dp_roman_avgS": {
+  "U": "n6/0265.png",
+  "Y": "n5/0069.png",
+  "ffi": "n11/0055.png",
+  "fl": "n2/0174.png",
+  "z": "n14/0084.png",
+  "ſk": "n8/0012.png"
+ },
+ "gp_roman_avgS": {
+  "Z": "n278/0275.png",
+  "ffl": "n145/0557.png",
+  "ſl": "n75/0208.png"
+ },
+ "gp_italic_avgS": {
+  "!": "n315/00096.png",
+  "U": "n115/00054.png",
+  "Z": "n98/00257.png"
+ },
+ "pica_roman_avg4": {
+  "ffl": "n90/0453.png",
+  "ſk": "n343/0551.png"
+ },
+ "pica_italic_avg11": {
+  "!": "n33/00294.png",
+  "ffl": "n90/00249.png"
+ },
+ "br_roman_avgS": {
+  "ffl": "n164/0598.png",
+  "ſk": "n150/1895.png"
+ },
+ "br_italic_avgS": {
+  "ffi": "n95/00336.png",
+  "ſſi": "n327/00687.png"
+ },
+ "lp1_italic_avgS": {
+  "!": "n124/00004.png"
+ },
+ "lp2_italic_avgS": {
+  "?": "n4418/00278.png",
+  "ſſi": "n663/00043.png"
+ },
+ "lp2_roman_avgS": {
+  "ffi": "n824/0788.png"
+ },
+ "en_italic_avgS": {
+  "!": "n3204/00466.png",
+  "fl": "n396/00532.png"
+ },
+ "en_roman_avgS": {
+  "ſb": "n298/0417.png"
+ },
+ "sp1_roman_avgS": {
+  "fl": "n196/0507.png",
+  "ſk": "n302/0847.png"
+ }
+}

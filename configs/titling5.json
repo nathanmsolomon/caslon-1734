@@ -1,0 +1,31 @@
+{
+ "name": "titling5",
+ "family": "Caslon 1734 Titling 5",
+ "style": "Roman",
+ "trans": "transcriptions/titling5.txt",
+ "boxes": {
+  "1": [
+   600,
+   3617,
+   2785,
+   3858
+  ],
+  "0": [
+   596,
+   3444,
+   2781,
+   3685
+  ],
+  "2": [
+   832,
+   3768,
+   3017,
+   4009
+  ]
+ },
+ "ntext": 0,
+ "rounds": 2,
+ "pitch": 255.55555555555557,
+ "pitch_note": "estimated: cap height / 0.72 (Pica ratio); single line, no pitch to measure",
+ "specimen": "work/spec_t5/*"
+}

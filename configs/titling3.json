@@ -1,0 +1,31 @@
+{
+ "name": "titling3",
+ "family": "Caslon 1734 Titling 3",
+ "style": "Roman",
+ "trans": "transcriptions/titling3.txt",
+ "boxes": {
+  "1": [
+   600,
+   2962,
+   2785,
+   3307
+  ],
+  "0": [
+   604,
+   2788,
+   2789,
+   3133
+  ],
+  "2": [
+   828,
+   3108,
+   3013,
+   3453
+  ]
+ },
+ "ntext": 0,
+ "rounds": 2,
+ "pitch": 368.05555555555554,
+ "pitch_note": "estimated: cap height / 0.72 (Pica ratio); single line, no pitch to measure",
+ "specimen": "work/spec_t3/*"
+}

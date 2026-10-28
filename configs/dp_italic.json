@@ -1,0 +1,38 @@
+{
+ "name": "dp_italic",
+ "family": "Caslon 1734 Double Pica",
+ "style": "Italic",
+ "trans": "transcriptions/doublepica_italic.txt",
+ "images": {
+  "0": "work/dpital_p0.png",
+  "1": "work/dpital_p1.png",
+  "2": "work/dpital_p2.png"
+ },
+ "boxes": {
+  "0": [
+   0,
+   0,
+   2458,
+   865
+  ],
+  "1": [
+   0,
+   0,
+   2458,
+   865
+  ],
+  "2": [
+   0,
+   0,
+   2458,
+   865
+  ]
+ },
+ "ntext": 4,
+ "skip_segment": true,
+ "start_avg": "work/eital_avg4",
+ "borrow": "-!:work/eital_avg4:1.5,?!:work/eital_avg4:1.5,A!:work/eital_avg4:1.5,B!:work/eital_avg4:1.5,C!:work/eital_avg4:1.5,D!:work/eital_avg4:1.5,E!:work/eital_avg4:1.5,F!:work/eital_avg4:1.5,G!:work/eital_avg4:1.5,H!:work/eital_avg4:1.5,I!:work/eital_avg4:1.5,J!:work/eital_avg4:1.5,K!:work/eital_avg4:1.5,L!:work/eital_avg4:1.5,M!:work/eital_avg4:1.5,N!:work/eital_avg4:1.5,O!:work/eital_avg4:1.5,P!:work/eital_avg4:1.5,Q!:work/eital_avg4:1.5,R!:work/eital_avg4:1.5,S!:work/eital_avg4:1.5,T!:work/eital_avg4:1.5,U!:work/eital_avg4:1.5,V!:work/eital_avg4:1.5,a!:work/eital_avg4:1.5,b!:work/eital_avg4:1.5,c!:work/eital_avg4:1.5,ct!:work/eital_avg4:1.5,d!:work/eital_avg4:1.5,e!:work/eital_avg4:1.5,f!:work/eital_avg4:1.5,ff!:work/eital_avg4:1.5,fi!:work/eital_avg4:1.5,g!:work/eital_avg4:1.5,h!:work/eital_avg4:1.5,i!:work/eital_avg4:1.5,j!:work/eital_avg4:1.5,l!:work/eital_avg4:1.5,m!:work/eital_avg4:1.5,n!:work/eital_avg4:1.5,o!:work/eital_avg4:1.5,p!:work/eital_avg4:1.5,q!:work/eital_avg4:1.5,r!:work/eital_avg4:1.5,s!:work/eital_avg4:1.5,t!:work/eital_avg4:1.5,u!:work/eital_avg4:1.5,v!:work/eital_avg4:1.5,æ!:work/eital_avg4:1.5,ſ!:work/eital_avg4:1.5,ſi!:work/eital_avg4:1.5,ſt!:work/eital_avg4:1.5,ſſi!:work/eital_avg4:1.5",
+ "rounds": 3,
+ "slant": 23.5,
+ "borrow_all": "Q!:work/eital_avg4:1.5,ê:work/gp_roman_avg3:1.23"
+}

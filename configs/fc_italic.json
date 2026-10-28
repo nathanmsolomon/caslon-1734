@@ -1,0 +1,40 @@
+{
+ "name": "fc_italic",
+ "family": "Caslon 1734 French Cannon",
+ "style": "Italic",
+ "trans": "transcriptions/frenchcannon_italic.txt",
+ "images": {
+  "0": "work/fcital_p0.png",
+  "1": "work/fcital_p1.png",
+  "2": "work/fcital_p2.png"
+ },
+ "boxes": {
+  "0": [
+   0,
+   0,
+   2762,
+   1610
+  ],
+  "1": [
+   0,
+   0,
+   2762,
+   1610
+  ],
+  "2": [
+   0,
+   0,
+   2762,
+   1610
+  ]
+ },
+ "ntext": 3,
+ "skip_segment": true,
+ "start_avg": "work/dp_italic_avg3",
+ "borrow": "-!:work/dp_italic_avg3:2.386,?!:work/dp_italic_avg3:2.386,A!:work/dp_italic_avg3:2.386,B!:work/dp_italic_avg3:2.386,C!:work/dp_italic_avg3:2.386,D!:work/dp_italic_avg3:2.386,E!:work/dp_italic_avg3:2.386,F!:work/dp_italic_avg3:2.386,G!:work/dp_italic_avg3:2.386,H!:work/dp_italic_avg3:2.386,I!:work/dp_italic_avg3:2.386,J!:work/dp_italic_avg3:2.386,K!:work/dp_italic_avg3:2.386,L!:work/dp_italic_avg3:2.386,M!:work/dp_italic_avg3:2.386,N!:work/dp_italic_avg3:2.386,O!:work/dp_italic_avg3:2.386,Q!:work/dp_italic_avg3:2.386,a!:work/dp_italic_avg3:2.386,b!:work/dp_italic_avg3:2.386,c!:work/dp_italic_avg3:2.386,d!:work/dp_italic_avg3:2.386,e!:work/dp_italic_avg3:2.386,f!:work/dp_italic_avg3:2.386,ff!:work/dp_italic_avg3:2.386,fi!:work/dp_italic_avg3:2.386,i!:work/dp_italic_avg3:2.386,j!:work/dp_italic_avg3:2.386,l!:work/dp_italic_avg3:2.386,m!:work/dp_italic_avg3:2.386,n!:work/dp_italic_avg3:2.386,o!:work/dp_italic_avg3:2.386,p!:work/dp_italic_avg3:2.386,q!:work/dp_italic_avg3:2.386,r!:work/dp_italic_avg3:2.386,s!:work/dp_italic_avg3:2.386,t!:work/dp_italic_avg3:2.386,u!:work/dp_italic_avg3:2.386,ſ!:work/dp_italic_avg3:2.386,ſt!:work/dp_italic_avg3:2.386",
+ "borrow_all": "Q!:work/dp_italic_avg3:2.336,ſ:work/dp_italic_avg3:2.336,q:work/dp_italic_avg3:2.336",
+ "rounds": 3,
+ "slant": 19.5,
+ "prefer_seg": true,
+ "pitch": 384.6
+}

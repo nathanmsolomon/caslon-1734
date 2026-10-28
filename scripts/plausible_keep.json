@@ -1,0 +1,17 @@
+{
+ "LongPrimerNo.1-Roman": {
+  "35": "Oct 23: averaged from 39 and 42 agreeing impressions (Oxford catalogue and others); well-formed old-style figures matching Pica's design, only softer at this size (NCC 0.67 vs bar 0.72; 5 scores 0.69 against 6 because blurred old-style 5 and 6 are close)"
+ },
+ "Brevier-Roman": {
+  "589": "Oct 23: rendered in both versions they are well-formed old-style figures matching Pica's (England's Gazetteer + Juvenal, 80+ impressions each); scores 0.68-0.71 just under the 0.72 bar at this tiny size. (j left out: the clean j's dot fuses into the stem; z left out: OCR misreads of 2)"
+ },
+ "LongPrimerNo.2-Roman": {
+  "35": "Oct 28: averaged from the Wellcome books (Dictionarium Britannicum 1736, Pharmacopoeia 1739; 50-78 impressions); well-formed old-style figures matching Long Primer No. 1's, scores 0.67-0.73 just under the bar at this size"
+ },
+ "GreatPrimer-Italic": {
+  "!": "Oct 28: verified single impression (impression_singles.json), a clean sloped italic ! like the Pica and English italic ones; scores 0.00 only because it is wider than the reference's (Impression font only)"
+ },
+ "LongPrimerNo.2-Italic": {
+  "w": "Oct 28: averaged from 300+ impressions in four Wellcome books; a clean Caslon italic w (looped left stroke); scores low only because the Pica reference w differs in proportion"
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "name": "lp2_roman",
+ "family": "Caslon 1734 Long Primer No. 2",
+ "style": "Roman",
+ "trans": "transcriptions/longprimer2_roman.txt",
+ "boxes": {
+  "1": [
+   2770,
+   9100,
+   4880,
+   9845
+  ],
+  "0": [
+   2732,
+   9060,
+   4842,
+   9805
+  ],
+  "2": [
+   2984,
+   9320,
+   5094,
+   10065
+  ]
+ },
+ "ntext": 8,
+ "borrow_all": "Q!:work/pica_roman_avg3:0.85",
+ "rounds": 3,
+ "supp": "work/k85_lp2_roman/n*,work/wdb/n*,work/wpo/n*,work/wnh/n*,work/wce/n*"
+}

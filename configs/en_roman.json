@@ -1,0 +1,33 @@
+{
+ "name": "en_roman",
+ "family": "Caslon 1734 English",
+ "style": "Roman",
+ "trans": "transcriptions/english_roman.txt",
+ "boxes": {
+  "0": [
+   2704,
+   4196,
+   4904,
+   5011
+  ],
+  "1": [
+   2700,
+   4315,
+   4900,
+   5130
+  ],
+  "2": [
+   2940,
+   4488,
+   5140,
+   5303
+  ]
+ },
+ "ntext": 6,
+ "borrow": "A!:work/pica_roman_avg3:1.07,B!:work/pica_roman_avg3:1.07,C!:work/pica_roman_avg3:1.07,D!:work/pica_roman_avg3:1.07,E!:work/pica_roman_avg3:1.07,F!:work/pica_roman_avg3:1.07,G!:work/pica_roman_avg3:1.07,H!:work/pica_roman_avg3:1.07,I!:work/pica_roman_avg3:1.07,J!:work/pica_roman_avg3:1.07,K!:work/pica_roman_avg3:1.07,L!:work/pica_roman_avg3:1.07,M!:work/pica_roman_avg3:1.07,N!:work/pica_roman_avg3:1.07,O!:work/pica_roman_avg3:1.07,P!:work/pica_roman_avg3:1.07,Q!:work/pica_roman_avg3:1.07,R!:work/pica_roman_avg3:1.07,S!:work/pica_roman_avg3:1.07,T!:work/pica_roman_avg3:1.07,U!:work/pica_roman_avg3:1.07,V!:work/pica_roman_avg3:1.07,W!:work/pica_roman_avg3:1.07",
+ "borrow_all": "Q!:work/pica_roman_avg3:1.07",
+ "rounds": 3,
+ "supp": "work/ebo/n*,work/eboX/n*,work/eboY/n*,work/k85_en_roman/n*,work/po/n*",
+ "prefer_seg": true,
+ "extra": "work/en_sc_avg"
+}

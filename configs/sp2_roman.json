@@ -1,0 +1,30 @@
+{
+ "name": "sp2_roman",
+ "family": "Caslon 1734 Small Pica No. 2",
+ "style": "Roman",
+ "trans": "transcriptions/smallpica2_roman.txt",
+ "boxes": {
+  "1": [
+   2760,
+   7400,
+   4840,
+   8135
+  ],
+  "0": [
+   2736,
+   7344,
+   4816,
+   8079
+  ],
+  "2": [
+   2988,
+   7608,
+   5068,
+   8340
+  ]
+ },
+ "ntext": 7,
+ "borrow_all": "Q!:work/pica_roman_avg3:0.93",
+ "rounds": 3,
+ "supp": "work/k85_sp2_roman/n*,work/fd/n*,work/ph/n*,work/k85_sp2_romanX/n*"
+}

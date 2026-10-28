@@ -1,0 +1,39 @@
+{
+ "name": "tlgp_italic",
+ "family": "Caslon 1734 Two Lines Great Primer",
+ "style": "Italic",
+ "trans": "transcriptions/twolinesgp_italic.txt",
+ "images": {
+  "0": "work/tlgpital_p0.png",
+  "1": "work/tlgpital_p1.png",
+  "2": "work/tlgpital_p2.png"
+ },
+ "boxes": {
+  "0": [
+   0,
+   0,
+   2638,
+   1105
+  ],
+  "1": [
+   0,
+   0,
+   2638,
+   1105
+  ],
+  "2": [
+   0,
+   0,
+   2638,
+   1105
+  ]
+ },
+ "ntext": 4,
+ "skip_segment": true,
+ "start_avg": "work/dp_italic_avg3",
+ "borrow": "-!:work/dp_italic_avg3:1.771,?!:work/dp_italic_avg3:1.771,A!:work/dp_italic_avg3:1.771,B!:work/dp_italic_avg3:1.771,C!:work/dp_italic_avg3:1.771,D!:work/dp_italic_avg3:1.771,E!:work/dp_italic_avg3:1.771,F!:work/dp_italic_avg3:1.771,G!:work/dp_italic_avg3:1.771,H!:work/dp_italic_avg3:1.771,I!:work/dp_italic_avg3:1.771,J!:work/dp_italic_avg3:1.771,K!:work/dp_italic_avg3:1.771,L!:work/dp_italic_avg3:1.771,M!:work/dp_italic_avg3:1.771,N!:work/dp_italic_avg3:1.771,O!:work/dp_italic_avg3:1.771,Q!:work/dp_italic_avg3:1.771,a!:work/dp_italic_avg3:1.771,b!:work/dp_italic_avg3:1.771,c!:work/dp_italic_avg3:1.771,d!:work/dp_italic_avg3:1.771,e!:work/dp_italic_avg3:1.771,f!:work/dp_italic_avg3:1.771,ff!:work/dp_italic_avg3:1.771,fi!:work/dp_italic_avg3:1.771,i!:work/dp_italic_avg3:1.771,j!:work/dp_italic_avg3:1.771,l!:work/dp_italic_avg3:1.771,m!:work/dp_italic_avg3:1.771,n!:work/dp_italic_avg3:1.771,o!:work/dp_italic_avg3:1.771,p!:work/dp_italic_avg3:1.771,q!:work/dp_italic_avg3:1.771,r!:work/dp_italic_avg3:1.771,s!:work/dp_italic_avg3:1.771,t!:work/dp_italic_avg3:1.771,u!:work/dp_italic_avg3:1.771,ſ!:work/dp_italic_avg3:1.771,ſt!:work/dp_italic_avg3:1.771",
+ "borrow_all": "Q!:work/dp_italic_avg3:1.771",
+ "rounds": 3,
+ "slant": 22.0,
+ "prefer_seg": true
+}

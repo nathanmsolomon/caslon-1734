@@ -1,0 +1,30 @@
+{
+ "name": "tlgp_roman",
+ "family": "Caslon 1734 Two Lines Great Primer",
+ "style": "Roman",
+ "trans": "transcriptions/twolinesgp_roman.txt",
+ "boxes": {
+  "1": [
+   600,
+   7540,
+   2800,
+   8650
+  ],
+  "0": [
+   560,
+   7424,
+   2760,
+   8534
+  ],
+  "2": [
+   816,
+   7732,
+   3016,
+   8842
+  ]
+ },
+ "ntext": 4,
+ "borrow_all": "Q!:work/dp_roman_avg3:1.771,C:work/dp_roman_avg3:1.771",
+ "rounds": 3,
+ "prefer_seg": true
+}

@@ -1,0 +1,6 @@
+{
+ "_note": "Glyphs that pass the averaging rules but were judged unreliable by eye; average.py leaves them out. Keyed by averages folder.",
+ "br_italic_avgS": {
+  "j": "Oct 28: book-only; 292 of 318 book 'j' are misread long s (no dot), and the 26 with something above the stem show fragments, not a dot: the average is a smear with no j shape"
+ }
+}

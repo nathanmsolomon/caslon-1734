@@ -1,0 +1,42 @@
+"""Set the release name records (copyright with Reserved Font Name, licence,
+version, description) in fonts copied for publication.
+
+Usage: python -I release_names.py <font.otf> ...      (edits the files in place)
+"""
+import sys, os
+from fontTools.ttLib import TTFont
+
+VERSION = "1.000"
+URL = "https://github.com/nathanmsolomon/caslon-1734"
+COPYRIGHT = 'Copyright (c) 2026, Nathan Solomon (' + URL + '), with Reserved Font Name "Caslon 1734".'
+LICENSE = ("This Font Software is licensed under the SIL Open Font License, Version 1.1. "
+           "This license is available with a FAQ at: https://openfontlicense.org")
+
+
+def describe(fn):
+    imp = "Impression" in fn
+    return ("Reconstructed from William Caslon's specimen sheet of 1734 (McGill University Library, "
+            "600 ppi) with his 1764-85 specimens and books printed in the same cut. "
+            + ("Each glyph is one typical real impression. " if imp else
+               "Each glyph is the registered average of many real impressions. ")
+            + "Letters without reliable impressions are left out. 1000 units = the measured body.")
+
+
+def main():
+    for fp in sys.argv[1:]:
+        f = TTFont(fp)
+        name = f["name"]
+        fam = name.getDebugName(1)
+        style = name.getDebugName(2)
+        recs = {0: COPYRIGHT, 3: f"{VERSION};{fam.replace(' ', '')}-{style}", 5: f"Version {VERSION}",
+                10: describe(os.path.basename(fp)), 11: URL, 13: LICENSE, 14: "https://openfontlicense.org"}
+        for nid, s in recs.items():
+            name.setName(s, nid, 3, 1, 0x409)
+            name.setName(s, nid, 1, 0, 0)
+        f["head"].fontRevision = float(VERSION)
+        f.save(fp)
+    print(len(sys.argv) - 1, "fonts named, version", VERSION)
+
+
+if __name__ == "__main__":
+    main()

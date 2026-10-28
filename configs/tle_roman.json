@@ -1,0 +1,30 @@
+{
+ "name": "tle_roman",
+ "family": "Caslon 1734 Two Lines English",
+ "style": "Roman",
+ "trans": "transcriptions/twolinesenglish_roman.txt",
+ "boxes": {
+  "1": [
+   600,
+   10020,
+   2800,
+   10880
+  ],
+  "0": [
+   540,
+   9996,
+   2740,
+   10856
+  ],
+  "2": [
+   800,
+   10240,
+   3000,
+   11100
+  ]
+ },
+ "ntext": 4,
+ "borrow_all": "Q!:work/dp_roman_avg3:1.414,ſ:work/dp_roman_avg3:1.414,q:work/dp_roman_avg3:1.414",
+ "rounds": 3,
+ "prefer_seg": true
+}
