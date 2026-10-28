@@ -3,7 +3,8 @@
 Usage: python -I fill_from_roman.py <italic.otf> <roman.otf> [chars]
 
 Printers of the period set roman ; : ! ( ) and figures inside italic text when
-the italic fount had none, so that is what this does: each character the
+the italic fount had none, so that is what this does (also the full stop and
+apostrophe, whose roman and italic forms do not differ; user's decision Oct 28): each character the
 italic's cmap lacks is copied (outline + advance) from the roman of the same
 size. The font is rewritten in place; the copied glyphs are listed.
 """
@@ -11,7 +12,7 @@ import sys
 from fontTools.ttLib import TTFont
 from fontTools.pens.t2CharStringPen import T2CharStringPen
 
-DEFAULT = ";:!?()&0123456789"
+DEFAULT = ".';:!?()&0123456789"
 
 
 def main():

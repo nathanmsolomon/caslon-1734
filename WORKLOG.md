@@ -467,3 +467,6 @@ The resemblance check now covers ; ( ) ' too and builds references for any chara
 - Release prep: sources_manifest.json (make_manifest.py; 1,520 pages) + fetch_sources.py
   (tested byte-identical), release_names.py, make_release.sh, release/ (README, EXTENDING,
   OFL with RFN "Caslon 1734", MIT LICENSE).
+- Later Oct 28: italics borrow the roman "." and "'" too (user's decision; fill_from_roman.py);
+  check_plausible.py skips verified singles in Impression fonts (it had removed the English and
+  LP1 italic "!"); those two italics rebuilt. Published as github.com/nathanmsolomon/caslon-1734.

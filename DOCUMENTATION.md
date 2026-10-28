@@ -244,7 +244,11 @@ as the London books among themselves, so it is the same cut.
   spacing (merge_metrics failed); the italic is built from the sheet alone.
 - Plausibility false alarms judged by eye and kept (plausible_keep.json): Long Primer
   No. 2 roman 3 5, italic w; Great Primer italic "!" (sloped, wider than the
-  reference). A Long Primer No. 2 roman "!" was correctly removed (a misread l).
+  reference). The check now skips verified singles in the Impression fonts
+  altogether: it had also removed the English and Long Primer No. 1 italic "!".
+- Italics now also borrow the roman full stop and apostrophe where the italic fount
+  shows none (fill_from_roman.py; Great Primer, English, Double Pica italic had no
+  full stop). A Long Primer No. 2 roman "!" was correctly removed (a misread l).
 - **Ligature check bug.** Where the Pica had no ligature to compare with, the
   comparison row was built from the letters with their full render margins, ~2.7 ×
   the ligature's width, so every such ligature scored 0 and was replaced by its
@@ -280,8 +284,9 @@ as the London books among themselves, so it is the same cut.
 Generated from the fonts (scripts/coverage_report.py) against the standard set: A–Z
 Æ Œ, a–z æ œ ſ, figures, . , ; : ? ! ' - ( ) &, and the ligatures ff fi fl ffi ffl ſt
 ſi ſſ ſſi ſh ſk ſl ct. "Impression only" are verified single impressions (section 5).
-Italic fonts carry their roman's ; : ! ? ( ) & and figures where the italic fount
-shows none (period practice); those count as present. Small capitals (Great Primer,
+Italic fonts carry their roman's . ' ; : ! ? ( ) & and figures where the italic
+fount shows none (period practice for ; : ! ( ) and figures; the full stop and
+apostrophe do not differ between roman and italic); those count as present. Small capitals (Great Primer,
 English, Pica, Long Primer No. 1 romans) are not listed.
 
 | Font | Missing (both versions) | In the Impression version only |
@@ -293,23 +298,23 @@ English, Pica, Long Primer No. 1 romans) are not listed.
 | Two Lines English roman | all but these 23: C Q a b d e f i l m n o p q r s t u ſ , ? - ſt | — |
 | Two Lines English italic | all but these 22: C Q a b d e f i l m n o p q r s t u ſ , ? ſt | — |
 | Double Pica roman | X Z Æ Œ æ œ 0 1 2 3 4 6 7 8 9 ' & ffl ſſ ſſi ſl | U Y z fl ffi ſk |
-| Double Pica italic | P R S T U V W X Y Z Æ Œ g h k v w x y z æ œ 0 1 2 3 4 6 7 8 9 . ' & fl ffi ffl ſi ſſ ſſi ſh ſk ſl ct | — |
+| Double Pica italic | P R S T U V W X Y Z Æ Œ g h k v w x y z æ œ 0 1 2 3 4 6 7 8 9 ' & fl ffi ffl ſi ſſ ſſi ſh ſk ſl ct | — |
 | Great Primer roman | X Æ Œ œ ſk | Z ffl ſl |
-| Great Primer italic | X Æ Œ œ . ' ffi ffl ſſ ſſi ſh ſk ſl | U Z |
+| Great Primer italic | X Æ Œ œ ffi ffl ſſ ſſi ſh ſk ſl | U Z |
 | English roman | Æ Œ œ 0 ffl ſk | — |
-| English italic | X Z Æ Œ œ 0 . ' ffi ffl ſſ ſh ſk ſl | fl |
+| English italic | X Z Æ Œ œ 0 ffi ffl ſſ ſh ſk ſl | fl |
 | Pica roman | Æ Œ ffi | ffl ſk |
-| Pica italic | Æ Œ æ œ ' fi ffi ſh ſk ſl ct | ffl |
+| Pica italic | Æ Œ æ œ fi ffi ſh ſk ſl ct | ffl |
 | Small Pica No. 1 roman | Æ Œ æ œ 3 5 6 7 9 ! ( ffl | fl ſk |
-| Small Pica No. 1 italic | Æ Œ æ œ 3 5 6 7 9 ! ' ( ff fl ffi ffl ſſi ſh ſk ſl | — |
+| Small Pica No. 1 italic | Æ Œ æ œ 3 5 6 7 9 ! ( ff fl ffi ffl ſſi ſh ſk ſl | — |
 | Small Pica No. 2 roman | Æ Œ œ 3 5 ! ( ffl | — |
-| Small Pica No. 2 italic | Æ Œ œ 3 5 ! ' ( ff fl ffl ſh ſk ſl | — |
+| Small Pica No. 2 italic | Æ Œ œ 3 5 ! ( ff fl ffl ſh ſk ſl | — |
 | Long Primer No. 1 roman | Œ œ ffi | — |
-| Long Primer No. 1 italic | Œ w œ ' ff fl ffi ffl ſſi ſh ſk ſl | — |
+| Long Primer No. 1 italic | Œ w œ ff fl ffi ffl ſſi ſh ſk ſl | — |
 | Long Primer No. 2 roman | Œ œ ! ' ffl | ffi |
 | Long Primer No. 2 italic | Œ œ ! ' - ff fl ffl ſh ſk ſl | ſſi |
 | Brevier roman | Œ z | ffl ſk |
-| Brevier italic | Œ h j w z œ ' ff ffl ſh ſk ſl | ffi ſſi |
+| Brevier italic | Œ h j w z œ ff ffl ſh ſk ſl | ffi ſſi |
 | Titling 1 | all but these 8: A B C D E G H K | — |
 | Titling 2 | all but these 11: A B C D E F G H I J K | — |
 | Titling 3 | O P Q R S T U V W X Y Z Æ Œ | — |

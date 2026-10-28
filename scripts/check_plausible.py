@@ -58,6 +58,11 @@ def main():
     keepmap = _json.load(open(kp, encoding="utf-8")) if os.path.exists(kp) else {}
     fname = os.path.basename(fp).replace("Impression", "").replace(".otf", "").replace("Caslon1734", "")
     keep = "".join(k for k in keepmap.get(fname, {}))
+    if "Impression" in os.path.basename(fp):
+        # verified single impressions (impression_singles.json) were each judged by eye
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from sync_coverage import singles
+        keep += "".join(singles(fp))
     # every reference letter, to ask which one each glyph resembles most (catches
     # mislabels between look-alikes such as V/W or Y/Z that pass on score alone)
     pool = [c for c in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&!?;:()'ſ" if ord(c) in rc]
