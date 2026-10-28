@@ -470,3 +470,11 @@ The resemblance check now covers ; ( ) ' too and builds references for any chara
 - Later Oct 28: italics borrow the roman "." and "'" too (user's decision; fill_from_roman.py);
   check_plausible.py skips verified singles in Impression fonts (it had removed the English and
   LP1 italic "!"); those two italics rebuilt. Published as github.com/nathanmsolomon/caslon-1734.
+- Gap review (user's questions): restored English roman 0, SP2 roman 3 5 ! (, SP1 roman 5 7,
+  Brevier roman z (plausible_keep.json, all checked by eye); LP2 "!" = LP1's sort (shared
+  punctuation; insert_glyph in finalize.sh, bogus average in reject_glyphs.json); LP2
+  apostrophe re-averaged with the new RAISED position filter (average.py); GP X confirmed
+  unattested (the "Mr. X." candidates are italic K).
+- Follow-ups: italics borrow the hyphen too; SP1 3 6 9 re-averaged from impressions chosen by eye
+  (label_fixes.json + apply_label_fixes.py, hooked into relabel_all.sh); LP2 apostrophe average
+  was a blob, so LP1's is set (reject_glyphs.json; insert_glyph.py "=" keeps the donor's spacing).

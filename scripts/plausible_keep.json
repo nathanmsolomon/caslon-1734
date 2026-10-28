@@ -3,15 +3,25 @@
   "35": "Oct 23: averaged from 39 and 42 agreeing impressions (Oxford catalogue and others); well-formed old-style figures matching Pica's design, only softer at this size (NCC 0.67 vs bar 0.72; 5 scores 0.69 against 6 because blurred old-style 5 and 6 are close)"
  },
  "Brevier-Roman": {
-  "589": "Oct 23: rendered in both versions they are well-formed old-style figures matching Pica's (England's Gazetteer + Juvenal, 80+ impressions each); scores 0.68-0.71 just under the 0.72 bar at this tiny size. (j left out: the clean j's dot fuses into the stem; z left out: OCR misreads of 2)"
+  "589": "Oct 23: rendered in both versions they are well-formed old-style figures matching Pica's (England's Gazetteer + Juvenal, 80+ impressions each); scores 0.68-0.71 just under the 0.72 bar at this tiny size. (Oct 23 notes on j and z superseded Oct 28: j's dot fixed in averaging; z kept, below)",
+  "z": "Oct 28: averaged from 47 impressions, a clear z (flat top, diagonal, flat foot), unlike the Brevier 2 (curved top, ball); the earlier note blaming misread 2s was wrong"
  },
  "LongPrimerNo.2-Roman": {
   "35": "Oct 28: averaged from the Wellcome books (Dictionarium Britannicum 1736, Pharmacopoeia 1739; 50-78 impressions); well-formed old-style figures matching Long Primer No. 1's, scores 0.67-0.73 just under the bar at this size"
+ },
+ "English-Roman": {
+  "0": "Oct 28: averaged from 32 impressions, all from all-figure words (dates, page numbers) in Eboracum and Polybius; a genuine old-style zero, round and at x-height, heavier and wider than the o, matching the Pica 0; flagged only because an old-style zero resembles a capital O"
  },
  "GreatPrimer-Italic": {
   "!": "Oct 28: verified single impression (impression_singles.json), a clean sloped italic ! like the Pica and English italic ones; scores 0.00 only because it is wider than the reference's (Impression font only)"
  },
  "LongPrimerNo.2-Italic": {
   "w": "Oct 28: averaged from 300+ impressions in four Wellcome books; a clean Caslon italic w (looped left stroke); scores low only because the Pica reference w differs in proportion"
+ },
+ "SmallPicaNo.2-Roman": {
+  "35!(": "Oct 28: 3 and 5 averaged from ~50 impressions each, genuine old-style figures of Pica's design (scored under the figures bar like the Long Primer 3 5); ! (8) and ( (57) genuine in both average and chosen impression; checked by eye"
+ },
+ "SmallPicaNo.1-Roman": {
+  "5679": "Oct 28: 5 (8) and 7 (5) genuine in average and impression; 6 (9) and 9 (5) re-averaged from impressions chosen by eye (scripts/label_fixes.json: the OCR's 3 6 9 included pairs, a 2 and smaller figures); the 6's chosen impression scores 0.62 against the Pica 6 but is one of the nine checked"
  }
 }

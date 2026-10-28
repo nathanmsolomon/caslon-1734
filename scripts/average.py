@@ -20,6 +20,7 @@ MAX_PER_GLYPH = int(os.environ.get("CASLON_MAXPER", "400"))   # impressions per 
 DYMAX = float(os.environ.get("CASLON_DYMAX", "6"))   # px at scan resolution
 TAILED = {"Q"}   # letters whose tail varies between impressions
 DOTTED = {"j"}   # letters whose detached dot sits a little differently on each impression
+RAISED = {"'"}   # marks that float well above the baseline (book OCR also labels letters as these)
 ONLY = os.environ.get("CASLON_ONLY_CHARS")   # re-average just these characters (scripts/redo_chars.py)
 
 
@@ -229,6 +230,16 @@ def main():
         if ch in REJECT:
             print(ch, "rejected by eye (reject_glyphs.json):", REJECT[ch])
             continue
+        if ch in RAISED:
+            # an apostrophe sits far above the baseline; book "apostrophes" standing on
+            # it are misread letters (t, n, d, T) or page furniture
+            up_ = [it for it in items if "y1" not in it[0] or
+                   it[0]["baseline"] - it[0]["y1"] > 0.8 * (it[0]["y1"] - it[0]["y0"])]
+            if len(up_) < len(items):
+                print(ch, "impressions standing on the baseline dropped:", len(items) - len(up_), "of", len(items))
+            items = up_
+            if not items:
+                continue
         # beyond a couple of hundred the mean no longer changes; also keep the
         # stack (float32 canvases) within about 2.5 GB of memory
         cap = int(min(MAX_PER_GLYPH, max(40, 2.5e9 / (H * UP * W * UP * 4 * 2))))

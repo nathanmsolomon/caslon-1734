@@ -59,6 +59,13 @@ for f in fonts/Caslon1734English*-Roman.otf fonts/Caslon1734GreatPrimer*-Roman.o
   case "$b" in Brevier-*) k=br;; English-*) k=en;; GreatPrimer-*) k=gp;; LongPrimerNo.1-*) k=lp1;; LongPrimerNo.2-*) k=lp2;; SmallPicaNo.2-*) k=sp2;; SmallPicaNo.1-*) k=sp1;; esac
   [ -f work/${k}_roman_avgS/glyphs.json ] && python -I -X utf8 scripts/check_ligs.py "$f" work/${k}_roman_avgS/glyphs.json fonts/Caslon1734Pica-Roman.otf
 done
+# Long Primer No. 2 "!": No. 1's sort (same body; the 2 real No. 2 impressions match it, and
+# the two founts share their punctuation; scripts/reject_glyphs.json)
+python -I -X utf8 scripts/insert_glyph.py fonts/Caslon1734LongPrimerNo.2-Roman.otf fonts/Caslon1734LongPrimerNo.1-Roman.otf "!" "="
+python -I -X utf8 scripts/insert_glyph.py fonts/Caslon1734LongPrimerNo.2Impression-Roman.otf fonts/Caslon1734LongPrimerNo.1Impression-Roman.otf "!" "="
+# and its apostrophe (the 55 book impressions average to a blob; reject_glyphs.json)
+python -I -X utf8 scripts/insert_glyph.py fonts/Caslon1734LongPrimerNo.2-Roman.otf fonts/Caslon1734LongPrimerNo.1-Roman.otf "'" "="
+python -I -X utf8 scripts/insert_glyph.py fonts/Caslon1734LongPrimerNo.2Impression-Roman.otf fonts/Caslon1734LongPrimerNo.1Impression-Roman.otf "'" "="
 # hand-checked corrections (scripts/overrides.py lists each, with the reason)
 python -I -X utf8 scripts/overrides.py
 for it in fonts/*-Italic.otf; do

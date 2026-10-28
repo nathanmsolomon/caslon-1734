@@ -276,6 +276,36 @@ as the London books among themselves, so it is the same cut.
   Now estimated from the Double Pica roman, scaled by x-height.
 - Pica "ſb": all seven book impressions labelled ſb are ſt (OCR); removed from the
   ligature substitutions.
+- **Second look at the gaps (user's questions, Oct 28).** Each missing character was
+  traced back through harvest, averaging and the checks:
+  - English roman 0: 32 impressions, all from all-figure words; a genuine old-style
+    zero rejected only for resembling a capital O. Restored (plausible_keep.json).
+  - Small Pica No. 2 roman 3 5 ! ( (and so the italic's, borrowed from it): genuine in
+    average and impression, false alarms of the plausibility check. Restored. Small
+    Pica No. 1: 5 7 restored; its 3 6 9 averages mixed in other misread figures (one
+    book, Parliamentary History vol. 4), so each of their 41 impressions was judged by
+    eye and pairs, fragments, a 2 and smaller figures were set aside
+    (scripts/label_fixes.json, applied by apply_label_fixes.py): 3 6 9 re-averaged from
+    9, 9 and 5 impressions and restored. (Automatic sorting against the Small Pica No. 2
+    figures was tried first and was not reliable enough.)
+  - Brevier roman z: 47 impressions, a clear z, not the misread 2 an earlier note
+    assumed. Restored.
+  - Long Primer No. 2 "!": of 19 book "!" only 2 are real (the rest misread t and l);
+    those 2 match Long Primer No. 1's "!" in height and shape, and the two founts'
+    punctuation agrees closely (; : , & ( ) at 0.93–0.97, against 0.68–0.91 between
+    different bodies): the founts shared their punctuation sorts, so No. 1's "!" is set
+    (finalize.sh; the bogus average is in reject_glyphs.json).
+  - Long Primer No. 2 apostrophe: half its 80 book impressions were misread letters
+    standing on the baseline, which sank the agreement. Raised marks are now filtered
+    by position (average.py RAISED: the mark's foot must stand well above the
+    baseline); 63 kept, but these faint Wellcome impressions still averaged to a
+    shapeless blob (no ball and tail), so, as with the "!", Long Primer No. 1's
+    apostrophe is set, with its own spacing (insert_glyph.py "=").
+  - Long Primer No. 2 italic hyphen: italics now borrow the roman hyphen too.
+  - Great Primer X: the harvester takes capitals only from words, so Roman numerals
+    were never collected; but searching both books' full OCR found no text-size X at
+    all: the only candidates ("Mr. X.", Caribbeana pp. 372–373) are italic K's
+    misread. X is genuinely unattested in the confirmed sources.
 - Brevier J, Pica ij, Titling 1 G–H, Titling 6 M, Small Pica No. 2 g and apostrophe:
   checked by eye, no change needed.
 
@@ -292,28 +322,28 @@ English, Pica, Long Primer No. 1 romans) are not listed.
 | Font | Missing (both versions) | In the Impression version only |
 |---|---|---|
 | French Cannon roman | all but these 18: C Q a b d e i l m n o q r t u ſ , - | — |
-| French Cannon italic | all but these 20: C Q a b d e i l m n o p q r t u ſ , ? ſt | — |
+| French Cannon italic | all but these 21: C Q a b d e i l m n o p q r t u ſ , ? - ſt | — |
 | Two Lines Great Primer roman | all but these 21: C Q a b d e i l m n o p q r s t u ſ , ? ſt | — |
 | Two Lines Great Primer italic | all but these 23: C Q a b d e f i l m n o p q r s t u ſ , ? - ſt | — |
 | Two Lines English roman | all but these 23: C Q a b d e f i l m n o p q r s t u ſ , ? - ſt | — |
-| Two Lines English italic | all but these 22: C Q a b d e f i l m n o p q r s t u ſ , ? ſt | — |
+| Two Lines English italic | all but these 23: C Q a b d e f i l m n o p q r s t u ſ , ? - ſt | — |
 | Double Pica roman | X Z Æ Œ æ œ 0 1 2 3 4 6 7 8 9 ' & ffl ſſ ſſi ſl | U Y z fl ffi ſk |
 | Double Pica italic | P R S T U V W X Y Z Æ Œ g h k v w x y z æ œ 0 1 2 3 4 6 7 8 9 ' & fl ffi ffl ſi ſſ ſſi ſh ſk ſl ct | — |
 | Great Primer roman | X Æ Œ œ ſk | Z ffl ſl |
 | Great Primer italic | X Æ Œ œ ffi ffl ſſ ſſi ſh ſk ſl | U Z |
-| English roman | Æ Œ œ 0 ffl ſk | — |
-| English italic | X Z Æ Œ œ 0 ffi ffl ſſ ſh ſk ſl | fl |
+| English roman | Æ Œ œ ffl ſk | — |
+| English italic | X Z Æ Œ œ ffi ffl ſſ ſh ſk ſl | fl |
 | Pica roman | Æ Œ ffi | ffl ſk |
 | Pica italic | Æ Œ æ œ fi ffi ſh ſk ſl ct | ffl |
-| Small Pica No. 1 roman | Æ Œ æ œ 3 5 6 7 9 ! ( ffl | fl ſk |
-| Small Pica No. 1 italic | Æ Œ æ œ 3 5 6 7 9 ! ( ff fl ffi ffl ſſi ſh ſk ſl | — |
-| Small Pica No. 2 roman | Æ Œ œ 3 5 ! ( ffl | — |
-| Small Pica No. 2 italic | Æ Œ œ 3 5 ! ( ff fl ffl ſh ſk ſl | — |
+| Small Pica No. 1 roman | Æ Œ æ œ ! ( ffl | fl ſk |
+| Small Pica No. 1 italic | Æ Œ æ œ ! ( ff fl ffi ffl ſſi ſh ſk ſl | — |
+| Small Pica No. 2 roman | Æ Œ œ ffl | — |
+| Small Pica No. 2 italic | Æ Œ œ ff fl ffl ſh ſk ſl | — |
 | Long Primer No. 1 roman | Œ œ ffi | — |
 | Long Primer No. 1 italic | Œ w œ ff fl ffi ffl ſſi ſh ſk ſl | — |
-| Long Primer No. 2 roman | Œ œ ! ' ffl | ffi |
-| Long Primer No. 2 italic | Œ œ ! ' - ff fl ffl ſh ſk ſl | ſſi |
-| Brevier roman | Œ z | ffl ſk |
+| Long Primer No. 2 roman | Œ œ ffl | ffi |
+| Long Primer No. 2 italic | Œ œ ff fl ffl ſh ſk ſl | ſſi |
+| Brevier roman | Œ | ffl ſk |
 | Brevier italic | Œ h j w z œ ff ffl ſh ſk ſl | ffi ſſi |
 | Titling 1 | all but these 8: A B C D E G H K | — |
 | Titling 2 | all but these 11: A B C D E F G H I J K | — |
@@ -336,10 +366,10 @@ Where the gaps come from:
   other letters (section 5, rejected singles).
 - **Italic ligatures** (ff, fl, ſh, ſk, ſl…) in the smaller sizes: rarely on the
   sheet, and book italic ligatures were mostly misread or too few.
-- **Removed on checking**: Brevier italic h w z j and roman z, Long Primer No. 1
-  italic w, Small Pica No. 1 and No. 2 figures 3 5 (6 7 9) and ! (, English italic Z,
-  English roman 0 (an O), Long Primer No. 2 roman ! (a misread l): OCR misreads or
-  impressions that do not look like the letter (finalize.log; check_plausible.py).
+- **Removed on checking**: Brevier italic h w z j, Long Primer No. 1 italic w,
+  English italic Z, Small Pica No. 1 ! ( (misread l and ft): OCR misreads or impressions
+  that do not look like the letter (finalize.log; check_plausible.py; reject_glyphs.json).
+- **Great Primer X**: no text-size X in either confirmed book (section 7a).
 
 ## 9. Reproducing
 `sh scripts/rebuild_all.sh` (after any harvest change: `sh scripts/relabel_all.sh`

@@ -24,3 +24,6 @@ sort_ ${F}Pica-Roman.otf rpA cl k85_pica_roman
 sort_ ${F}Pica-Italic.otf riC cli k85_pica_italic
 sort_ ${F}DoublePica-Roman.otf wgl
 sort_ ${F}DoublePica-Italic.otf wgli
+
+# by-eye label corrections (scripts/label_fixes.json)
+$PY scripts/apply_label_fixes.py
