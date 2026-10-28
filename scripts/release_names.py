@@ -46,6 +46,17 @@ def main():
             name.setName(s, nid, 3, 1, 0x409)
             name.setName(s, nid, 1, 0, 0)
         f["head"].fontRevision = float(VERSION)
+        # Windows header fixes (Oct 28: apps fell back to another font, and asking for
+        # the roman gave the italic):
+        ps = name.getDebugName(6)
+        cff = f["CFF "].cff
+        cff.fontNames = [ps]                      # CFF name = PostScript name, unique per style
+        italic = bool(f["OS/2"].fsSelection & 1)
+        f["head"].macStyle = 2 if italic else 0   # must agree with OS/2 fsSelection
+        o = f["OS/2"]
+        o.version = 4                             # fsSelection bit 7 (typo metrics) needs v4
+        o.ulCodePageRange1 |= 1                   # Latin 1 (1252): apps use this to accept the font
+        o.fsType = 0                              # installable embedding (OFL)
         f.save(fp)
     print(len(sys.argv) - 1, "fonts named, version", VERSION)
 
