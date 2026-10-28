@@ -302,6 +302,13 @@ as the London books among themselves, so it is the same cut.
     shapeless blob (no ball and tail), so, as with the "!", Long Primer No. 1's
     apostrophe is set, with its own spacing (insert_glyph.py "=").
   - Long Primer No. 2 italic hyphen: italics now borrow the roman hyphen too.
+  - Small Pica No. 1 "!" and "(": borrowing No. 2's was considered (their punctuation
+    shapes agree), but the shape score is size-normalised; measured directly, No. 1's
+    genuine "!" (55 px) and "(" (70–76 px) are 5–10 % smaller than No. 2's (60–62,
+    75–80 px), at a book scale of exactly 1.000: different sorts, so nothing is
+    borrowed. (For Long Primer the heights match: 54 against 55 px.) Instead, of 73
+    book "(" the 13 real ones were chosen by eye (the rest misread ft) and averaged:
+    "(" restored. All 8 book "!" are l: Small Pica No. 1 "!" stays missing.
   - Great Primer X: the harvester takes capitals only from words, so Roman numerals
     were never collected; but searching both books' full OCR found no text-size X at
     all: the only candidates ("Mr. X.", Caribbeana pp. 372–373) are italic K's
@@ -335,8 +342,8 @@ English, Pica, Long Primer No. 1 romans) are not listed.
 | English italic | X Z Æ Œ œ ffi ffl ſſ ſh ſk ſl | fl |
 | Pica roman | Æ Œ ffi | ffl ſk |
 | Pica italic | Æ Œ æ œ fi ffi ſh ſk ſl ct | ffl |
-| Small Pica No. 1 roman | Æ Œ æ œ ! ( ffl | fl ſk |
-| Small Pica No. 1 italic | Æ Œ æ œ ! ( ff fl ffi ffl ſſi ſh ſk ſl | — |
+| Small Pica No. 1 roman | Æ Œ æ œ ! ffl | fl ſk |
+| Small Pica No. 1 italic | Æ Œ æ œ ! ff fl ffi ffl ſſi ſh ſk ſl | — |
 | Small Pica No. 2 roman | Æ Œ œ ffl | — |
 | Small Pica No. 2 italic | Æ Œ œ ff fl ffl ſh ſk ſl | — |
 | Long Primer No. 1 roman | Œ œ ffi | — |
@@ -367,7 +374,7 @@ Where the gaps come from:
 - **Italic ligatures** (ff, fl, ſh, ſk, ſl…) in the smaller sizes: rarely on the
   sheet, and book italic ligatures were mostly misread or too few.
 - **Removed on checking**: Brevier italic h w z j, Long Primer No. 1 italic w,
-  English italic Z, Small Pica No. 1 ! ( (misread l and ft): OCR misreads or impressions
+  English italic Z, Small Pica No. 1 ! (all misread l): OCR misreads or impressions
   that do not look like the letter (finalize.log; check_plausible.py; reject_glyphs.json).
 - **Great Primer X**: no text-size X in either confirmed book (section 7a).
 

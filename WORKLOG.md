@@ -478,3 +478,5 @@ The resemblance check now covers ; ( ) ' too and builds references for any chara
 - Follow-ups: italics borrow the hyphen too; SP1 3 6 9 re-averaged from impressions chosen by eye
   (label_fixes.json + apply_label_fixes.py, hooked into relabel_all.sh); LP2 apostrophe average
   was a blob, so LP1's is set (reject_glyphs.json; insert_glyph.py "=" keeps the donor's spacing).
+- SP1 "(" from its 13 genuine book impressions (by eye; label_fixes.json); SP1 "!" has none (all l).
+  Not borrowed from SP2: SP1's marks measure 5-10% smaller (different sorts), unlike LP1/LP2.
