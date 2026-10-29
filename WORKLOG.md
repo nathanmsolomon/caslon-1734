@@ -480,3 +480,5 @@ The resemblance check now covers ; ( ) ' too and builds references for any chara
   was a blob, so LP1's is set (reject_glyphs.json; insert_glyph.py "=" keeps the donor's spacing).
 - SP1 "(" from its 13 genuine book impressions (by eye; label_fixes.json); SP1 "!" has none (all l).
   Not borrowed from SP2: SP1's marks measure 5-10% smaller (different sorts), unlike LP1/LP2.
+- Oct 29: release adds fonts/ttf/ (TrueType copies from make_ttf.py, for Word; README says install
+  one set only). Installed on this PC: the 62 TTFs in the C: per-user Fonts folder (user's choice).

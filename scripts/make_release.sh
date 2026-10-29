@@ -7,6 +7,9 @@ R=../caslon-1734-release
 mkdir -p $R/fonts $R/specimen $R/scripts $R/configs $R/transcriptions
 cp fonts/Caslon1734*.otf $R/fonts/
 python -I -X utf8 scripts/release_names.py $R/fonts/*.otf
+# TrueType-outline copies for Microsoft Word, which lays out CFF .otf fonts in Calibri
+rm -rf $R/fonts/ttf
+python -I -X utf8 scripts/make_ttf.py $R/fonts/ttf $R/fonts/*.otf
 cp specimen/Caslon1734_catalogue.pdf specimen/Caslon1734_specimen.pdf specimen/catalogue.typ specimen/specimen.typ \
    specimen/page1.png specimen/page2.png specimen/page3.png $R/specimen/
 cp scripts/*.py scripts/*.sh scripts/*.json $R/scripts/
@@ -17,4 +20,4 @@ cp transcriptions/*.txt $R/transcriptions/
 cp sources_manifest.json DOCUMENTATION.md $R/
 cp README.md $R/WORKLOG.md
 cp release/README.md release/EXTENDING.md release/OFL.txt release/LICENSE release/.gitignore $R/
-echo "release assembled in $R: $(ls $R/fonts | wc -l) fonts"
+echo "release assembled in $R: $(ls $R/fonts/*.otf | wc -l) fonts + $(ls $R/fonts/ttf/*.ttf | wc -l) TrueType"

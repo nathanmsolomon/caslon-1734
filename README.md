@@ -57,9 +57,26 @@ Bodies are the line pitch of the sheet's solid-set blocks, measured on the 600 p
 scan, in points of 1/72 inch. Each font's em is its own measured body, so setting every
 font at the size in this table reproduces the sheet at actual size.
 
+## Installing
+
+Install **one** of the two sets, not both: they share font names, and with both
+installed an application may pick either.
+
+- **Microsoft Word and Office: use `fonts/ttf/`** (TrueType outlines). Word on
+  Windows lays out text in OpenType fonts with PostScript (CFF) outlines in Calibri
+  even though it lists them, so the CFF fonts do not work there.
+- **Everything else (InDesign, Affinity, LibreOffice, macOS, the web): `fonts/`**
+  (OpenType, CFF outlines). These are the reference versions.
+
+The TrueType copies are converted from the CFF fonts with every curve kept within 1
+unit (1/1000 of the body); the largest ink change on any glyph is 0.65 %.
+
+On Windows, right-click the files and choose *Install*.
+
 ## Repository
 
-- `fonts/`: the 62 OpenType (CFF) fonts.
+- `fonts/`: the 62 OpenType (CFF) fonts; `fonts/ttf/`: the same 62 with TrueType
+  outlines, for Word.
 - `specimen/`: the catalogue (every font, every character, what each lacks) and a
   specimen sheet.
 - `DOCUMENTATION.md`: aims, every source, the pipeline, rules and decisions, quality

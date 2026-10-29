@@ -122,6 +122,10 @@ as the London books among themselves, so it is the same cut.
    per copy and line; book spacing mapped onto the sheet's (merge_metrics.py).
 5. **Building** (build.py): traced at the ink area measured on real impressions;
    Impression version from one typical real impression (unwarped).
+   For release (make_release.sh): name records and Windows header fields
+   (release_names.py), and TrueType-outline copies for Microsoft Word, which lays out
+   CFF fonts in Calibri (make_ttf.py: cu2qu, 1-unit tolerance, ink change at most
+   0.65 %).
 6. **Finishing** (finalize.sh): stray pieces, Q width, capital sidebearings, the
    plausibility check of book-only characters (check_plausible.py, with
    plausible_keep.json for characters confirmed by eye), italic punctuation from the
