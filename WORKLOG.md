@@ -487,4 +487,4 @@ The resemblance check now covers ; ( ) ' too and builds references for any chara
   SP2 æ, Brevier Æ, English ſſi; fix_degenerate_spacing.py after every merge). InDesign outputs
   our OTFs correctly (test vs Minion control); Document Fonts don't activate for documents
   opened by script, so the reference build uses session-loaded fonts. Release v1.0 with
-  OpenType/TrueType zips and the InDesign package. Known defect left: SP1 roman X malformed.
+  OpenType/TrueType zips and the InDesign package. SP1 roman X fixed (book "X" were Y, Y, T; label_fixes.json; redo_chars.py now shifts results onto a wider canvas).

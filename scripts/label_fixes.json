@@ -1,5 +1,5 @@
 {
- "_note": "Oct 28: by-eye review of Small Pica No. 1 book figures 3 6 9 (Parliamentary History vol. 4; work/q_sp1_369.png). Impressions set aside: pairs (39, 6o, 99, ,9), fragments, a 2, faint or broken, small or raised figures (another size). Applied by apply_label_fixes.py. Also Small Pica No. 1 '(' and '!' (work/q_sp1_marks.png): of 73 '(' only 13 are parentheses (the rest misread ft ligatures, a '(c', a broken one); all 8 '!' are l.",
+ "_note": "Oct 28: by-eye review of Small Pica No. 1 book figures 3 6 9 (Parliamentary History vol. 4; work/q_sp1_369.png). Impressions set aside: pairs (39, 6o, 99, ,9), fragments, a 2, faint or broken, small or raised figures (another size). Applied by apply_label_fixes.py. Also Small Pica No. 1 '(' and '!' (work/q_sp1_marks.png): of 73 '(' only 13 are parentheses (the rest misread ft ligatures, a '(c', a broken one); all 8 '!' are l. Also Small Pica No. 1 roman 'X' (Oct 29): the three book impressions are Y, Y and T (single capitals misread by the OCR); only the sheet's three alphabet-line X are genuine.",
  "labels": {
   "work/pc/n347/0461.png": "?fig",
   "work/pc/n427/0264.png": "?fig",
@@ -86,6 +86,9 @@
   "work/pc/n437/0880.png": "?misread",
   "work/pc/n446/0157.png": "?misread",
   "work/pc/n447/0028.png": "?misread",
-  "work/pc/n447/0049.png": "?misread"
+  "work/pc/n447/0049.png": "?misread",
+  "work/pc/n350/0920.png": "?misread",
+  "work/pc/n44/1087.png": "?misread",
+  "work/pc/n54/0181.png": "?misread"
  }
 }

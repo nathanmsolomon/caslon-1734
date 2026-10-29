@@ -325,6 +325,11 @@ as the London books among themselves, so it is the same cut.
   ink: ligatures and æ œ Æ Œ from their components' sidebearings, other letters from a
   sibling size's proportions. It runs after every spacing merge (run_size.py,
   build_pica.sh).
+- **Small Pica No. 1 roman X (Oct 29).** Its six impressions were the sheet's three
+  alphabet-line X and three book "X" that were really Y, Y and T (single capitals
+  misread); the average showed a Y's stem through the X and the Impression font had
+  picked a Y. The three misreads are set aside (label_fixes.json) and the X is averaged
+  from the sheet alone; its spacing, measured on the sheet, was unaffected.
 - **Windows font headers (Oct 28).** Roman and italic shared one CFF font name, the
   italics' head.macStyle said upright, and no code page was declared: Windows apps
   substituted another font and drew the italic for the roman. Fixed in
