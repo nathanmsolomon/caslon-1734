@@ -12,6 +12,8 @@ rm -rf $R/fonts/ttf
 python -I -X utf8 scripts/make_ttf.py $R/fonts/ttf $R/fonts/*.otf
 cp specimen/Caslon1734_catalogue.pdf specimen/Caslon1734_specimen.pdf specimen/catalogue.typ specimen/specimen.typ \
    specimen/page1.png specimen/page2.png specimen/page3.png $R/specimen/
+mkdir -p $R/specimen/reference
+cp specimen/reference/* $R/specimen/reference/   # reference documents (make_reference_docs.py)
 cp scripts/*.py scripts/*.sh scripts/*.json $R/scripts/
 rm -f $R/scripts/autopilot.sh      # local unattended chain (machine-specific paths)
 cp configs/*.json $R/configs/

@@ -317,6 +317,18 @@ as the London books among themselves, so it is the same cut.
     were never collected; but searching both books' full OCR found no text-size X at
     all: the only candidates ("Mr. X.", Caribbeana pp. 372–373) are italic K's
     misread. X is genuinely unattested in the confirmed sources.
+- **Degenerate spacing (found Oct 29 while making the reference documents).** Glyphs
+  measured from only one pair got a 1:2 split of a negative gap from the spacing solver
+  and overprinted their neighbours: Pica roman g (advance 140 units against 478 of ink),
+  æ, œ; Small Pica No. 2 æ; Brevier Æ; English ſſi. fix_degenerate_spacing.py now
+  re-estimates any glyph measured from at most 2 pairs whose advance is under half its
+  ink: ligatures and æ œ Æ Œ from their components' sidebearings, other letters from a
+  sibling size's proportions. It runs after every spacing merge (run_size.py,
+  build_pica.sh).
+- **Windows font headers (Oct 28).** Roman and italic shared one CFF font name, the
+  italics' head.macStyle said upright, and no code page was declared: Windows apps
+  substituted another font and drew the italic for the roman. Fixed in
+  release_names.py.
 - Brevier J, Pica ij, Titling 1 G–H, Titling 6 M, Small Pica No. 2 g and apostrophe:
   checked by eye, no change needed.
 
@@ -381,6 +393,17 @@ Where the gaps come from:
   English italic Z, Small Pica No. 1 ! (all misread l): OCR misreads or impressions
   that do not look like the letter (finalize.log; check_plausible.py; reject_glyphs.json).
 - **Great Primer X**: no text-size X in either confirmed book (section 7a).
+
+## 8a. Reference documents
+specimen/reference/ holds every font at its true size, each setting the 1734 sheet's
+passage for its size, with its character set and what it lacks: a Word document with
+the TrueType fonts embedded, an IDML for InDesign, and a PDF of each program's own
+rendering. make_reference_docs.py writes them; reference_word.ps1 (Word embeds the
+fonts and exports the PDF) and reference_indesign.vbs/.jsx (InDesign checks fonts and
+overset text, saves the .indd, exports the PDF) finish them. InDesign was checked to
+output the OpenType fonts correctly. In both, characters a font lacks are set in
+another typeface (Cambria, Minion Pro), never in Caslon. The InDesign document with
+its fonts in a Document Fonts folder is a Release download.
 
 ## 9. Reproducing
 `sh scripts/rebuild_all.sh` (after any harvest change: `sh scripts/relabel_all.sh`

@@ -17,6 +17,7 @@ cp $A/metrics.json $A/metrics_1734.json
 $PY scripts/spacing.py $A 7 @work/rpA_dirs.txt | head -1
 cp $A/metrics.json $A/metrics_book.json
 $PY scripts/merge_metrics.py $A 97.1 | tail -1
+$PY scripts/fix_degenerate_spacing.py $A work/en_roman_avgS
 for v in clean impression; do
   sfx=""; [ $v = impression ] && sfx=Impression
   $PY scripts/build.py $A $v 97.1 fonts/Caslon1734Pica${sfx}-Roman.otf --descent=-262 --extra=work/pica_sc_avg | tail -1
@@ -31,6 +32,7 @@ cp $I/metrics.json $I/metrics_1734.json
 $PY scripts/spacing.py $I 7 @work/riC_dirs.txt | head -1
 cp $I/metrics.json $I/metrics_book.json
 $PY scripts/merge_metrics.py $I 97.1 | tail -1
+$PY scripts/fix_degenerate_spacing.py $I work/en_italic_avgS
 for v in clean impression; do
   sfx=""; [ $v = impression ] && sfx=Impression
   $PY scripts/build.py $I $v 97.1 fonts/Caslon1734Pica${sfx}-Italic.otf --slant=16.5 --style=Italic --descent=-262 | tail -1

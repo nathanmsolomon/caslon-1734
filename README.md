@@ -59,6 +59,10 @@ font at the size in this table reproduces the sheet at actual size.
 
 ## Installing
 
+Download the fonts from the **Releases** page: one zip of TrueType fonts, one of
+OpenType, each with installation notes.
+
+
 Install **one** of the two sets, not both: they share font names, and with both
 installed an application may pick either.
 
@@ -79,6 +83,10 @@ On Windows, right-click the files and choose *Install*.
   outlines, for Word.
 - `specimen/`: the catalogue (every font, every character, what each lacks) and a
   specimen sheet.
+- `specimen/reference/`: reference documents showing every font at its true size with
+  the 1734 sheet's own text: `Caslon1734_reference.docx` (Word, fonts embedded),
+  `Caslon1734_reference.idml` (InDesign), and a PDF of each (Word's and InDesign's
+  rendering). The InDesign document with its fonts is a download on the Releases page.
 - `DOCUMENTATION.md`: aims, every source, the pipeline, rules and decisions, quality
   checks and fidelity, every fix, and what each face contains.
 - `EXTENDING.md`: how to add a source, a letter or a size and rebuild.

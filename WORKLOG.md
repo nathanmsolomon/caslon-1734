@@ -482,3 +482,9 @@ The resemblance check now covers ; ( ) ' too and builds references for any chara
   Not borrowed from SP2: SP1's marks measure 5-10% smaller (different sorts), unlike LP1/LP2.
 - Oct 29: release adds fonts/ttf/ (TrueType copies from make_ttf.py, for Word; README says install
   one set only). Installed on this PC: the 62 TTFs in the C: per-user Fonts folder (user's choice).
+- Oct 29: reference documents (specimen/reference: Word with embedded fonts, IDML, both PDFs;
+  InDesign 2026 installed and used to verify). Found and fixed degenerate spacing (Pica g æ œ,
+  SP2 æ, Brevier Æ, English ſſi; fix_degenerate_spacing.py after every merge). InDesign outputs
+  our OTFs correctly (test vs Minion control); Document Fonts don't activate for documents
+  opened by script, so the reference build uses session-loaded fonts. Release v1.0 with
+  OpenType/TrueType zips and the InDesign package. Known defect left: SP1 roman X malformed.

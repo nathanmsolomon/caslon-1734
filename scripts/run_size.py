@@ -301,6 +301,8 @@ def main():
         run([f"{S}/spacing.py", avgS, str(C["ntext"]), "@" + lst2])
         _sh.copy(f"{avgS}/metrics.json", f"{avgS}/metrics_book.json")
         m_ = run([f"{S}/merge_metrics.py", avgS, str(pitch), ",".join(al), str(C["ntext"])])
+        # glyphs the solver could not measure (one or two pairs) get estimated spacing
+        run([f"{S}/fix_degenerate_spacing.py", avgS, f"{W}/pica_{C['style'].lower()}_avg{'4' if C['style'] == 'Roman' else '11'}"])
         tpl = avgS
         sp += " | supplements: " + str(len(supp)) + " dirs; " + m_.strip().splitlines()[-1]
     fam = C["family"]; style = C["style"]
