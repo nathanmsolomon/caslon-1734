@@ -45,7 +45,7 @@ The 1734 Double Pica is the 1760s "Double Pica Roman No. 2" (0.968 vs 0.919 for 
 Each book was confirmed as the same cut (section 4) before any letter was used.
 | Size | Book | Source id | ppi | Tag |
 |---|---|---|---|---|
-| Pica | Nieuwentyt, *The Religious Philosopher* (W. Bowyer, 1730) | religiousphiloso1730nieu | 400 | rpA, riC |
+| Pica | Nieuwentyt, *The Religious Philosopher* (W. Bowyer, 1730) | religiousphiloso1730nieu | 400 | rpA, riC; rpAX, riCX (ligature OCR, section 7b) |
 | Pica | *Corruptae Latinitatis* | corruptaelatinit00massuoft | 400 | cl, cli |
 | Pica (!) | Epictetus (1741) | (user-supplied PDF) | — | pica_excl |
 | English | Drake, *Eboracum* (Bowyer, 1736) | bim_eighteenth-century_eboracum-or-the-history_drake-francis-frs_1736 | 888 | ebo, eboX, eboY, eboi… |
@@ -337,6 +337,43 @@ as the London books among themselves, so it is the same cut.
 - Brevier J, Pica ij, Titling 1 G–H, Titling 6 M, Small Pica No. 2 g and apostrophe:
   checked by eye, no change needed.
 
+## 7b. Ligatures found by a ligature-reading OCR model (Oct 30)
+
+The original book harvest decided ligatures from spelling: the OCR text says "st", and
+the pipeline judged whether a ligature sort was printed. Sorts the OCR never shows as
+ligatures could not be found that way, so some stayed missing (the Pica italic had no
+ct, the Pica roman no ffi).
+
+**The model.** A Kraken recognition model was fine-tuned from McCATMuS to read the
+sorts themselves: ſ, æ/œ and each ligature as its own character. Its training lines
+are the diplomatic transcriptions of the 1734 sheet and of book lines. The work is in
+`N:\Claude Work\Ligature OCR` (not part of this release); on an unseen 1617 test page
+it found 12 of 13 ligatures with no false ones.
+
+**The harvest:**
+1. The model read all 149 harvested leaves of Bowyer's *Religious Philosopher*.
+2. Each word holding ct or ffi was classed roman or italic by its measured slant
+   (italic ≥ 8°, roman ≤ 4°). A sample of 20 was all correct; 2 of 601 words stayed
+   unsure.
+3. `scripts/harvest_ligs.py` placed each sort in the book's 600-ppi frame (italic
+   sheared 16.5°) at the model's position.
+   - Locator: the English size's ct/ffi scaled by the body ratio, NCC ≥ 0.5.
+   - Neighbouring ink is masked out.
+   - Kept: italic ct 108 of 110 (`work/riCX`), roman ffi 47 of 47 (`work/rpAX`), all
+     checked by eye.
+4. They enter `build_pica.sh` as supplementary book sources, so average.py calibrates
+   them for size and weight against the same book's other letters. The averages:
+   italic ct from 107 impressions, roman ffi from 48.
+
+**Still too few for the clean fonts:** italic ffi and roman Æ (2 impressions each).
+
+**Into the published fonts (Nov 3).** A full rebuild of the Pica also changed 21–45
+existing glyphs per font (the published fonts carry later hand fixes), so it was not
+released. Instead `scripts/insert_lig.py` copied only the new glyph from the rebuild
+(with its own advance and side bearings) into each published font and added its rule:
+c_t under `hlig` in the Pica and Pica Impression italics, f_f_i (U+FB03) under `liga` in
+the two romans. A glyph-by-glyph comparison with the previous release shows no other change.
+
 ## 8. What each face contains, and what is missing
 
 Generated from the fonts (scripts/coverage_report.py) against the standard set: A–Z
@@ -361,8 +398,8 @@ English, Pica, Long Primer No. 1 romans) are not listed.
 | Great Primer italic | X Æ Œ œ ffi ffl ſſ ſſi ſh ſk ſl | U Z |
 | English roman | Æ Œ œ ffl ſk | — |
 | English italic | X Z Æ Œ œ ffi ffl ſſ ſh ſk ſl | fl |
-| Pica roman | Æ Œ ffi | ffl ſk |
-| Pica italic | Æ Œ æ œ fi ffi ſh ſk ſl ct | ffl |
+| Pica roman | Æ Œ | ffl ſk |
+| Pica italic | Æ Œ æ œ fi ffi ſh ſk ſl | ffl |
 | Small Pica No. 1 roman | Æ Œ æ œ ! ffl | fl ſk |
 | Small Pica No. 1 italic | Æ Œ æ œ ! ff fl ffi ffl ſſi ſh ſk ſl | — |
 | Small Pica No. 2 roman | Æ Œ œ ffl | — |

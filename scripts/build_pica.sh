@@ -10,7 +10,9 @@ PY="python -I -X utf8"
 # roman
 A=work/pica_roman_avg4; rm -rf $A
 # Corruptae Latinitatis (work/cl, cli; confirmed as Pica Oct 21) adds æ œ Æ: averaging only
-(echo work/pica_roman_p0; echo work/pica_roman_p1; echo work/pica_roman_p2; cat work/rpA_dirs.txt; ls -d work/cl/n* 2>/dev/null | sed 's/^/+/') > work/pica_roman_sources.txt
+# work/rpAX (Oct 30): roman ffi from the same book, found by the ligature-reading OCR model
+# (N:/Claude Work/Ligature OCR) and harvested by scripts/harvest_ligs.py (the Pica had no ffi)
+(echo work/pica_roman_p0; echo work/pica_roman_p1; echo work/pica_roman_p2; cat work/rpA_dirs.txt; ls -d work/cl/n* 2>/dev/null | sed 's/^/+/'; ls -d work/rpAX/n* 2>/dev/null | sed 's/^/+/') > work/pica_roman_sources.txt
 $PY scripts/average.py $A @work/pica_roman_sources.txt > work/pica_roman_avg4_log.txt 2>&1
 $PY scripts/spacing.py $A 7 work/pica_roman_p0 work/pica_roman_p1 work/pica_roman_p2 | head -1
 cp $A/metrics.json $A/metrics_1734.json
@@ -25,7 +27,8 @@ done
 
 # italic
 I=work/pica_italic_avg11; rm -rf $I
-(cat work/isourcesC.txt; ls -d work/cli/n* 2>/dev/null | sed 's/^/+/') > work/pica_italic_sources.txt
+# work/riCX (Oct 30): italic ct from the same book (ligature OCR + harvest_ligs.py; the Pica italic had no ct)
+(cat work/isourcesC.txt; ls -d work/cli/n* 2>/dev/null | sed 's/^/+/'; ls -d work/riCX/n* 2>/dev/null | sed 's/^/+/') > work/pica_italic_sources.txt
 $PY scripts/average.py $I @work/pica_italic_sources.txt > work/pica_italic_avg11_log.txt 2>&1
 $PY scripts/spacing.py $I 7 work/ital_al_p0 work/ital_al_p1 work/ital_al_p2 | head -1
 cp $I/metrics.json $I/metrics_1734.json
