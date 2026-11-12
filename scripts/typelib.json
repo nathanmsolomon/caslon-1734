@@ -1,0 +1,34 @@
+{
+ "name": "caslon",
+ "description": "Reconstructed from William Caslon's 1734 specimen sheet (McGill University Library copies, 600 ppi). Each glyph is the registered average of every impression on three copies; spacing solved from printed neighbours. 1000 units = measured Pica body.",
+ "win_meta": false,
+ "ascii_names": false,
+ "min_area": 12,
+ "drop_extra_lines": false,
+ "min_book": 5,
+ "below": 0.36,
+ "medoid_ref": false,
+ "per_letter_rng": false,
+ "avg_jobs": 1,
+ "align_jobs": 1,
+ "split_half": true,
+ "sb_mode": "scale",
+ "median_capital": false,
+ "unseen_median": false,
+ "fix_degenerate": "work/pica_{style}_avg{n}",
+ "check_build": false,
+ "check_glyphs": true,
+ "check_refs": {
+  "Roman": [
+   "N:/Claude Work/Caslon 1734/work/pica_roman_avg4",
+   "N:/Claude Work/Caslon 1734/work/en_roman_avgS",
+   "N:/Claude Work/Garamont/work/cic_roman_avgS"
+  ],
+  "Italic": [
+   "N:/Claude Work/Caslon 1734/work/pica_italic_avg11",
+   "N:/Claude Work/Caslon 1734/work/en_italic_avgS",
+   "N:/Claude Work/Garamont/work/cic_italic_avgS"
+  ]
+ },
+ "_why": "Reproduces Caslon 1734/scripts as published (v1.0). win_meta is off because release_names.py applies the Windows fixes afterwards."
+}

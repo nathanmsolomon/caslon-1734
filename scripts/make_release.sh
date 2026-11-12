@@ -14,7 +14,22 @@ cp specimen/Caslon1734_catalogue.pdf specimen/Caslon1734_specimen.pdf specimen/c
    specimen/page1.png specimen/page2.png specimen/page3.png $R/specimen/
 mkdir -p $R/specimen/reference
 cp specimen/reference/* $R/specimen/reference/   # reference documents (make_reference_docs.py)
-cp scripts/*.py scripts/*.sh scripts/*.json $R/scripts/
+cp scripts/*.sh scripts/*.json $R/scripts/
+# Since Nov 12 2026 scripts/*.py are stubs that run the shared library (N:\Claude Work\_typelib,
+# one copy for Caslon, Garamont and Colines; the originals are in scripts/_pre_typelib). The
+# release ships the real code: the library's version of every script this project had, its glyph
+# checker, and this project's settings as scripts/typelib.json (read by typelib_profile.py).
+L=../_typelib
+for f in scripts/*.py; do
+  b=$(basename "$f")
+  if head -n 1 "$f" | grep -q "typelib stub"; then
+    if [ -f "scripts/_pre_typelib/$b" ] || [ "$b" = check_glyphs.py ]; then cp "$L/$b" $R/scripts/; fi
+  else
+    cp "$f" $R/scripts/
+  fi
+done
+cp $L/typelib_profile.py $R/scripts/
+cp $L/profiles/caslon.json $R/scripts/typelib.json
 rm -f $R/scripts/autopilot.sh      # local unattended chain (machine-specific paths)
 cp configs/*.json $R/configs/
 rm -f $R/configs/np_*.json $R/configs/pr_*.json      # Nonpareil and Pearl: dropped (too small for the scan)

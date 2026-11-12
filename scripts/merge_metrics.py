@@ -11,9 +11,12 @@ NTEXT = int(sys.argv[4]) if len(sys.argv) > 4 else 7   # running-text lines in t
 A = json.load(open(os.path.join(avg, "metrics_1734.json"), encoding="utf-8"))
 B = json.load(open(os.path.join(avg, "metrics_book.json"), encoding="utf-8"))
 import glob
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import typelib_profile as _prof  # noqa: E402   per-project settings (N:\Claude Work\_typelib)
 on_sheet = set()
 for f in [f for pat in PRIMARY.split(",") for f in glob.glob(os.path.join(pat, "instances.json"))]:
     on_sheet |= {i["ch"] for i in json.load(open(f, encoding="utf-8"))["instances"]}
+on_sheet -= {c for c in os.environ.get("GARAMONT_SHEET_DROP", "").split(",") if c}   # mis-cut labels (run_size.py sheet_drop)
 a_ = {c: m for c, m in A["glyphs"].items() if c in on_sheet}
 b_ = B["glyphs"]
 common = [c for c in a_ if c in b_ and a_[c]["pairs"] >= 10 and b_[c]["pairs"] >= 30 and c.islower()]
@@ -43,14 +46,29 @@ for f in [f for pat in PRIMARY.split(",") for f in glob.glob(os.path.join(pat, "
     key = {(i["line"], i["word"], i["pos"]) for i in I}
     right_in_1734 |= {i["ch"] for i in I if i["line"] < NTEXT and (i["line"], i["word"], i["pos"] + 1) in key}
 sbA = np.mean([a_[c]["lsb"] + a_[c]["rsb"] for c in common]); sbB = np.mean([b_[c]["lsb"] + b_[c]["rsb"] for c in common])
-sb_scale = sbA / sbB
+# Book ink spreads by about the same amount on every side (heavier inking, a coarser
+# scan), so a book sidebearing differs from the sheet's by a constant, not a factor.
+# (A ratio was used until Nov 6 2026: with the Bringer's near-zero lowercase gaps it
+# came to ~3 and gave every book capital ~15 px a side, "H ieronymus".)
+sb_off = (sbA - sbB) / 2
+sb_scale = sbA / sbB        # the older mapping (profile sb_mode "scale": Caslon, Colines)
+SB_OFFSET = _prof.get("sb_mode") == "offset"
 caps = [c for c in out if len(c) == 1 and c.isupper()]
 rsb = {}
 for c in caps:
-    if c in right_in_1734:
+    if c in right_in_1734 and c in a_:   # a sheet_drop letter (S. Augustin J) is on the sheet but not in a_ (Nov 12)
         rsb[c] = (a_[c]["rsb"], "1734 text")
     elif c in b_ and b_[c]["pairs"] >= 15:
-        rsb[c] = (b_[c]["rsb"] * sb_scale, "book text, scaled")
+        rsb[c] = (max(b_[c]["rsb"] + sb_off, 0.0), "book text, offset to sheet") if SB_OFFSET else (b_[c]["rsb"] * sb_scale, "book text, scaled")
+# A book-only capital measured in fewer than 15 pairs gets the median right side of the
+# well-measured capitals rather than its own noisy figure (the S. Augustin italic swash N,
+# 10 pairs, came out 18 px against ~5, Nov 10 2026). Diagonal-sided capitals keep their own:
+# a median taken mostly from straight stems would set them too loose.
+if rsb and _prof.get("median_capital"):
+    med = float(np.median([v for v, _ in rsb.values()]))
+    for c in caps:
+        if c not in rsb and c not in a_ and c in b_ and c not in "AVWXY":
+            rsb[c] = (med, f"too few book pairs ({b_[c]['pairs']}): median capital")
 SYM = set("AHIMNOTUVWXYSZ")  # not J: its tail hooks left below the line
 STRAIGHT_L, ROUND_L = set("BDEFKLPR"), set("CGOQ")
 check = []

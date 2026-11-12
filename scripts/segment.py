@@ -10,6 +10,12 @@ import sys, os, json, re
 import cv2
 import numpy as np
 
+# components smaller than this are specks (dust, Greek-accent leftovers): at 600 ppi a
+# Cicero i-dot or full stop is 41 px and up on the Berner sheets (Caslon used 12)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import typelib_profile as _prof  # noqa: E402   per-project settings (N:\Claude Work\_typelib)
+MIN_AREA = _prof.get("min_area")   # Caslon 12, Garamont and Colines 30
+
 
 def tokens(line):
     """Words -> list of glyph names (ligatures kept as one glyph)."""
@@ -123,7 +129,7 @@ def main():
     blur = cv2.GaussianBlur(im, (3, 3), 0)
     thr, bw = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
     n, lab, stats, cent = cv2.connectedComponentsWithStats(bw, 8)
-    comps = [dict(x=s[0], y=s[1], w=s[2], h=s[3], a=s[4], i=k) for k, s in enumerate(stats) if k and s[4] >= 12]
+    comps = [dict(x=s[0], y=s[1], w=s[2], h=s[3], a=s[4], i=k) for k, s in enumerate(stats) if k and s[4] >= MIN_AREA]
 
     # text lines: cluster the bottoms of mid-sized components (mostly baseline-sitting letters)
     hs = sorted(c["h"] for c in comps if c["h"] > 10)
@@ -136,6 +142,17 @@ def main():
         else:
             groups[-1].append(b)
     groups = [g for g in groups if len(g) >= 4]
+    # book pages: a smudge or show-through can form a small extra "line" between two
+    # real ones; while there are too many, drop the sparsest group that sits closer
+    # than 0.6 line pitch to a neighbour
+    while _prof.get("drop_extra_lines") and len(groups) > len(lines_t) >= 3:
+        med = [float(np.median(g)) for g in groups]
+        pitch = float(np.median(np.diff(med)))
+        close = [k for k in range(len(groups))
+                 if min(abs(med[k] - med[j]) for j in range(len(groups)) if j != k) < 0.6 * pitch]
+        if not close:
+            break
+        groups.pop(min(close, key=lambda k: len(groups[k])))
     centers = [float(np.median(g)) - 0.5 * hmed for g in groups]  # x-height midline
     print("lines", len(centers), "transcribed lines", len(lines_t))
     if len(centers) != len(lines_t):

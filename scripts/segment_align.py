@@ -15,8 +15,51 @@ import sys, os, json, re
 import cv2
 import numpy as np
 
+# components smaller than this are specks (dust, Greek-accent leftovers): at 600 ppi a
+# Cicero i-dot or full stop is 41 px and up on the Berner sheets (Caslon used 12)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import typelib_profile as _prof  # noqa: E402   per-project settings (N:\Claude Work\_typelib)
+MIN_AREA = _prof.get("min_area")   # Caslon 12, Garamont and Colines 30
+
 sys.path.insert(0, os.path.dirname(__file__))
 from segment import tokens  # noqa: E402
+
+VARIANTS = False    # --variants: the transcription is OCR text (McCATMuS writes ſ as s,
+                    # æ as "ae" and no ligatures); try each historical spelling per word
+LIGS = {"ssi": "ſſi", "ss": "ſſ", "si": "ſi", "st": "ſt", "ct": "ct", "ffi": "ffi", "ff": "ff",
+        "fi": "fi", "fl": "fl", "ae": "æ", "oe": "œ", "AE": "Æ", "Ae": "Æ", "OE": "Œ"}
+
+
+def variants(names, T, cap=256):
+    """Spellings of an OCR word as template names: s or ſ (not word-final), ae/oe
+    as æ/œ, and ligature sorts, keeping only spellings with every template present."""
+    s = "".join(names)
+    out = []
+
+    def rec(i, acc):
+        if len(out) >= cap:
+            return
+        if i == len(s):
+            if all(n in T for n in acc):
+                out.append(acc)
+            return
+        for L in (3, 2):
+            seg = s[i:i + L]
+            if len(seg) == L and seg in LIGS:
+                lig = LIGS[seg]
+                if seg.startswith("s") and i + L == len(s):
+                    pass
+                elif lig in T:
+                    rec(i + L, acc + [lig])
+                # ligatures of s also exist as long-s spellings of the plain letters
+        c = s[i]
+        if c == "s" and i < len(s) - 1:
+            rec(i + 1, acc + ["ſ"])
+        rec(i + 1, acc + [c])
+
+    rec(0, [])
+    return out
+
 
 BORROW = {}     # name -> (avg_dir, scale): template borrowed from another size
 SYNTH = {}      # name -> component glyphs, set from the command line (--synth ſſi=ſ+ſ+i)
@@ -84,6 +127,8 @@ def main():
                 ch_, d_, sc_ = spec.split(":", 2)[0], spec.split(":")[1] + (":" + spec.split(":")[2] if spec.count(":") > 2 else ""), None
                 parts_ = spec.split(":"); ch_, sc_ = parts_[0], float(parts_[-1]); d_ = ":".join(parts_[1:-1])
                 BORROW[ch_] = (d_, sc_)
+    global VARIANTS
+    VARIANTS = "--variants" in sys.argv
     for a in sys.argv[1:]:
         if a.startswith("--synth"):
             for spec in a.split("=", 1)[1].split(","):
@@ -98,12 +143,15 @@ def main():
     os.makedirs(out, exist_ok=True)
     T = load_templates(avg)
     lines_t = [l.rstrip("\n") for l in open(trans, encoding="utf-8") if l.strip()]
+    if VARIANTS:
+        import unicodedata   # Kraken/McCATMuS writes NFD (letter + combining mark)
+        lines_t = [unicodedata.normalize("NFC", l) for l in lines_t]
     blur = cv2.GaussianBlur(im, (3, 3), 0)
     thr, bw = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
     paper, ink = float(np.percentile(im, 80)), float(np.percentile(im, 1))
     dens = np.clip((paper - im.astype(np.float32)) / (paper - ink), 0, 1).astype(np.float32)
     n, lab, stats, _ = cv2.connectedComponentsWithStats(bw, 8)
-    comps = [dict(x=s[0], y=s[1], w=s[2], h=s[3], a=s[4], i=k) for k, s in enumerate(stats) if k and s[4] >= 12]
+    comps = [dict(x=s[0], y=s[1], w=s[2], h=s[3], a=s[4], i=k) for k, s in enumerate(stats) if k and s[4] >= MIN_AREA]
     hs = sorted(c["h"] for c in comps if c["h"] > 10); hmed = hs[len(hs) // 2]
     bots = sorted(c["y"] + c["h"] for c in comps if 0.7 * hmed < c["h"] < 1.8 * hmed)
     groups = [[bots[0]]]
@@ -165,14 +213,19 @@ def main():
             coef = np.polyfit(fx[keep], fy[keep], 1)
         for wi, (span, toks) in enumerate(zip(spans, twords)):
             names = [t.strip("{}") for t in toks]
-            if any(nm not in T for nm in names) or not span:
+            cands = variants(names, T) if VARIANTS else ([names] if all(nm in T for nm in names) else [])
+            if not cands or not span:
                 report.append(f"line {li+1} word {wi+1}: no template for {[nm for nm in names if nm not in T]}"); continue
             wx0, wx1 = span[0][0], span[-1][1]
             xs = np.arange(wx0 - 8, wx1 + 8)
             base = float(np.polyval(coef, (wx0 + wx1) / 2))
             # score maps: S[k][j] = best NCC with template k's ink-left at xs[j]
-            S, BDY = [], []
-            for nm in names:
+            # (computed once per template name, so trying spellings is cheap)
+            cache = {}
+
+            def smap(nm):
+                if nm in cache:
+                    return cache[nm]
                 t = T[nm]; th, tw = t["img"].shape
                 ty = int(round(base - t["base"]))
                 best = np.full(len(xs), -1.0, np.float32); bdy = np.zeros(len(xs), int)
@@ -191,28 +244,37 @@ def main():
                         q = x - 2 - off  # template box starts 2 px left of ink-left
                         if 0 <= q < len(r) and r[q] > best[j]:
                             best[j] = r[q]; bdy[j] = dy
-                S.append(best); BDY.append(bdy)
-            # DP over positions
-            nk, nx = len(names), len(xs)
-            D = np.full((nk, nx), -1e9); P = np.zeros((nk, nx), int)
-            D[0] = S[0] - W_PEN * ((xs - wx0) / SIGMA) ** 2
-            for k in range(1, nk):
-                exp = T[names[k - 1]]["inkw"] + GAP
-                for j in range(nx):
-                    d = xs[j] - xs
-                    cand = D[k - 1] - W_PEN * np.minimum(((d - exp) / SIGMA) ** 2, 4.0)
-                    # the next letter may not start inside the previous one (an I fits
-                    # H's right stem); overhanging sorts are allowed to overlap more
-                    prev = names[k - 1]
-                    frac = 0.38 if prev in ("Q",) else 0.4 if prev in ("f", "ſ", "j", "ff", "ſſ") else 0.8
-                    cand[d <= max(2, frac * T[prev]["inkw"])] = -1e9
-                    P[k, j] = int(np.argmax(cand)); D[k, j] = cand[P[k, j]] + S[k][j]
-            endpen = W_PEN * (((xs + T[names[-1]]["inkw"]) - wx1) / SIGMA) ** 2
-            j = int(np.argmax(D[-1] - endpen))
-            pos = [0] * nk
-            for k in range(nk - 1, -1, -1):
-                pos[k] = j; j = P[k, j]
-            score = float(np.mean([S[k][pos[k]] for k in range(nk)]))
+                cache[nm] = (best, bdy)
+                return cache[nm]
+
+            def dp(names):
+                S = [smap(nm)[0] for nm in names]
+                nk, nx = len(names), len(xs)
+                D = np.full((nk, nx), -1e9); P = np.zeros((nk, nx), int)
+                D[0] = S[0] - W_PEN * ((xs - wx0) / SIGMA) ** 2
+                for k in range(1, nk):
+                    exp = T[names[k - 1]]["inkw"] + GAP
+                    for j in range(nx):
+                        d = xs[j] - xs
+                        cand = D[k - 1] - W_PEN * np.minimum(((d - exp) / SIGMA) ** 2, 4.0)
+                        # the next letter may not start inside the previous one (an I fits
+                        # H's right stem); overhanging sorts are allowed to overlap more
+                        prev = names[k - 1]
+                        frac = 0.38 if prev in ("Q",) else 0.4 if prev in ("f", "ſ", "j", "ff", "ſſ") else 0.8
+                        cand[d <= max(2, frac * T[prev]["inkw"])] = -1e9
+                        P[k, j] = int(np.argmax(cand)); D[k, j] = cand[P[k, j]] + S[k][j]
+                endpen = W_PEN * (((xs + T[names[-1]]["inkw"]) - wx1) / SIGMA) ** 2
+                j = int(np.argmax(D[-1] - endpen))
+                pos = [0] * nk
+                for k in range(nk - 1, -1, -1):
+                    pos[k] = j; j = P[k, j]
+                return float(np.mean([S[k][pos[k]] for k in range(nk)])), pos
+
+            # with --variants, every spelling of the OCR word (s/ſ, ae/æ, ligature
+            # sorts) is tried and the one whose templates fit the ink best is kept
+            score, pos, names = max((dp(c) + (c,) for c in cands), key=lambda r: r[0])
+            nk = len(names)
+            S = [smap(nm)[0] for nm in names]; BDY = [smap(nm)[1] for nm in names]
             if score < 0.3:
                 report.append(f"line {li+1} word {wi+1} '{''.join(names)}': weak alignment {score:.2f}"); continue
             # assign word pixels to the template claiming them most

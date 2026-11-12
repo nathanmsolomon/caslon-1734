@@ -2,6 +2,7 @@
 re-averaging the whole size (e.g. after a change to how one letter is averaged).
 
 Usage: python -I redo_chars.py <avg dir> <sources list> <chars>
+       <chars>: single characters ("fe"), or glyph names separated by commas ("fl,ſt,e")
 
 Runs average.py on the same sources with CASLON_ONLY_CHARS (the canvas geometry
 depends only on the sources, so it matches the existing averages), then replaces
@@ -17,16 +18,20 @@ S = os.path.dirname(os.path.abspath(__file__))
 
 def main():
     avg, srcs, chars = sys.argv[1:4]
+    # "fl,ſt,e" names whole glyphs; without commas each character is one glyph (as before)
+    chars = chars.split(",") if "," in chars else list(chars)
     key = os.path.basename(os.path.normpath(avg))
     tmp = f"work/redo_{key}"
     shutil.rmtree(tmp, ignore_errors=True)
-    env = dict(os.environ, CASLON_ONLY_CHARS=chars, CASLON_SINGLES_KEY=key)
+    env = dict(os.environ, CASLON_ONLY_CHARS=json.dumps(chars, ensure_ascii=False), CASLON_SINGLES_KEY=key,
+               COLINES_AVG_JOBS="1")
     subprocess.run([sys.executable, "-I", "-X", "utf8", f"{S}/average.py", tmp, "@" + srcs], env=env,
                    stdout=open(tmp + ".log", "w", encoding="utf-8"), stderr=subprocess.STDOUT, check=True)
     gt = json.load(open(f"{tmp}/glyphs.json", encoding="utf-8"))
     gp = f"{avg}/glyphs.json"; g = json.load(open(gp, encoding="utf-8"))
-    # the canvas is sized from all the sources, so setting impressions aside can change its
-    # width; a glyph's ink starts at a third of the width, so it moves across exactly
+    # the canvas is sized from the letters averaged, so a run of a few letters (or one with
+    # impressions set aside) can come out narrower; a glyph's ink starts at a third of the
+    # width, so it moves across exactly (Caslon, Oct 29; Colines met the same on Nov 11)
     assert (gt["height"], gt["base_row"]) == (g["height"], g["base_row"]), "canvas height or baseline differs"
     dx = int(round(g["width"] / 3 - gt["width"] / 3))
     if gt["width"] != g["width"]:

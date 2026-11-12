@@ -15,6 +15,8 @@ Writes metrics.json (scan px, 600 ppi) into avg_dir.
 import sys, os, json
 import numpy as np
 import cv2
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import typelib_profile as _prof  # noqa: E402   per-project settings (N:\Claude Work\_typelib)
 
 SYMMETRIC = set("nouimlvxw")
 # capital side shapes (left, right): s = straight stem, r = round, d = diagonal,
@@ -57,8 +59,9 @@ def main():
     seen_l, seen_r = {}, {}     # how often each side is observed abutting in running text
     for di, d in enumerate(dirs):
         I = json.load(open(os.path.join(d, "instances.json"), encoding="utf-8"))["instances"]
-        rej = {r["file"] for v in g["glyphs"].values() for r in v["rejected"]}
-        I = [i for i in I if os.path.join(os.path.basename(d), i["file"]) not in rej]
+        # seeded singles record rejects with "/", averaged ones with os.sep
+        rej = {r["file"].replace("\\", "/") for v in g["glyphs"].values() for r in v["rejected"]}
+        I = [i for i in I if f"{os.path.basename(os.path.normpath(d))}/{i['file']}" not in rej]
         key = {(i["line"], i["word"], i["pos"]): i for i in I}
         # a line of lowercase only (a specimen's "abcdefgh" under its letterspaced
         # capitals) was set solid: measure it like running text, or its letters'
@@ -136,11 +139,22 @@ def main():
     x, *_ = np.linalg.lstsq(A[keep], b[keep], rcond=None)
     res = (A @ x - b)[:ndata][keep[:ndata]]
     obs = {c: int(((A[keep][:, ci[c]] != 0) | (A[keep][:, n + ci[c]] != 0)).sum()) for c in chars}
+    Ak = A[:ndata][keep[:ndata]]
+    seen = {c: int(((Ak[:, ci[c]] != 0) | (Ak[:, n + ci[c]] != 0)).sum()) for c in chars}
     out = {}
     for c in chars:
         r, lsb = x[ci[c]], x[n + ci[c]]
         adv = lsb + r
         out[c] = dict(adv=float(adv), lsb=float(lsb), rsb=float(r - inkw[c]), inkw=float(inkw[c]), pairs=obs[c])
+    # a sort in no kept pair (italic 4 and 9, whose only words failed alignment) is
+    # left free by the weak priors and can come out with a negative advance: give it
+    # the median sidebearings of the well-measured sorts instead
+    good = [out[c] for c in chars if seen[c] >= 3]
+    if good and _prof.get("unseen_median"):
+        ml, mr = float(np.median([o["lsb"] for o in good])), float(np.median([o["rsb"] for o in good]))
+        for c in chars:
+            if not seen[c] and c not in CAP_SIDES:
+                out[c].update(adv=ml + inkw[c] + mr, lsb=ml, rsb=mr)
     extras = {f"copy{k[0]}_line{k[1]}": float(x[2 * n + v]) for k, v in extra.items()}
     json.dump(dict(glyphs=out, extra_space=extras, rms=float(np.sqrt((res ** 2).mean())),
                    pairs_used=int(keep[:ndata].sum()), pairs_total=ndata),

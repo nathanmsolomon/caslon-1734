@@ -1,6 +1,6 @@
 """Like-for-like fidelity: IoU of font glyph vs each real impression, measured
 exactly like impression-vs-impression (crop level, sub-pixel aligned).
-Usage: python -I fidelity.py <font.otf> <pitch_px> <instances_dir> [...]"""
+Usage: python -I fidelity.py <font.otf> <pitch_px> <instances_dir> [...] [--json=<per-letter out.json>]"""
 import sys, json, os, itertools, random
 import cv2, numpy as np
 from fontTools.ttLib import TTFont
@@ -27,7 +27,8 @@ def render(gs, name, s, SS=8):
         t = np.zeros_like(m); cv2.fillPoly(t, [q], 255); m ^= t
     return (cv2.resize(m, (W, H), interpolation=cv2.INTER_AREA) > 127).astype(np.float32)
 
-fontp, pitch, dirs = sys.argv[1], float(sys.argv[2]), sys.argv[3:]
+fontp, pitch, dirs = sys.argv[1], float(sys.argv[2]), [a for a in sys.argv[3:] if not a.startswith("--json=")]
+JS = next((a[7:] for a in sys.argv[3:] if a.startswith("--json=")), None)
 gs = TTFont(fontp).getGlyphSet(); s = pitch / 1000
 random.seed(0)
 font_iou, ref_iou, per = [], [], {}
@@ -51,3 +52,6 @@ print(f"font vs impression       IoU median {np.median(font_iou):.3f}")
 print(f"impression vs impression IoU median {np.median(ref_iou):.3f}")
 worst = sorted(per.items(), key=lambda kv: np.median(kv[1]))[:10]
 print("lowest:", ", ".join(f"{c} {np.median(v):.2f}" for c, v in worst))
+
+if JS:
+    json.dump({c: [round(float(np.median(v)), 3), len(v)] for c, v in per.items()}, open(JS, "w", encoding="utf-8"), ensure_ascii=False, indent=0)

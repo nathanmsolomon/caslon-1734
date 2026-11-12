@@ -488,3 +488,26 @@ The resemblance check now covers ; ( ) ' too and builds references for any chara
   our OTFs correctly (test vs Minion control); Document Fonts don't activate for documents
   opened by script, so the reference build uses session-loaded fonts. Release v1.0 with
   OpenType/TrueType zips and the InDesign package. SP1 roman X fixed (book "X" were Y, Y, T; label_fixes.json; redo_chars.py now shifts results onto a wider canvas).
+
+## Nov 12 2026: Two Lines English italic p and comma; scripts moved to a shared library
+- **Two Lines English italic `p` and `,` corrected.** On the sheet's "Catilina, patientia" the aligner had put the comma of
+  "Catilina," into the p's box, so typing p set ",p", and a 11 x 17 px speck was labelled as that comma; the averager then
+  kept the three specks and rejected the two real commas of "abutere," as the minority. `scripts/fix_tle_italic_p.py`
+  reduces each p impression to the p, makes the comma that was in it a comma impression (real ink, moved to its own label)
+  and sets the specks aside. p is the average of 3 impressions, the comma of 4 of 5. Both were re-averaged, re-spaced on a
+  copy of the averages (`work/tle_italic_avgF_fix`) and inserted into the two fonts on their own with `insert_glyph.py`
+  (`work/tle_fix_nov12.sh`), as the Nov 3 ligatures were; no other glyph changed. Before/after: `work/tle_fix_proof_nov12.png`.
+- **How it was found:** `check_glyphs.py`, a new check that asks of every averaged glyph whether it is the letter its label
+  says (its build: x-height, ascender, descender, width; its likeness to the same letter in other faces; whether its
+  impressions agree). Run over every face on Nov 11 it flagged this p ("2.08 x the width of its letter") and comma.
+  Its other Caslon flags were looked at by eye and are right as published: English italic fi, ſſi (the published font sets
+  ſ + ſi) and Z (already unmapped by `check_plausible.py`); French Cannon and Two Lines Great Primer roman Q (short titling
+  tails); the romans' J and Q (a descending J and a long tail are wider than the reference faces').
+- **Scripts.** The pipeline scripts are now one library shared with the Garamont and Colines revivals; here they are the
+  library's code with this project's settings in `scripts/typelib.json` (they reproduce the v1.0 scripts: an A/B run of
+  Great Primer roman through both gave 377 of 377 identical output files).
+- **Reference documents.** The Word reference (`specimen/reference/Caslon1734_reference.docx`, `_Word.pdf`) was regenerated
+  with the corrected fonts (63 fonts embedded, 37 pages, as before). The InDesign PDF (`_InDesign.pdf`, and the PDF inside
+  the InDesign package) could not be regenerated on Nov 12 (InDesign would not start from a script) and still shows the
+  old Two Lines English italic p and comma; the package's Document Fonts hold the corrected fonts, so the .indd sets them
+  correctly when opened.

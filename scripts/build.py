@@ -21,6 +21,7 @@ UPM = 1000
 DROP = set()  # "!" was here while it had 2-3 impressions; average.py now drops any book-only glyph with < 5 agreeing
 sys.path.insert(0, os.path.dirname(__file__))
 from glyphnames import glyph_name  # noqa: E402
+import typelib_profile as _prof  # noqa: E402   per-project settings
 
 
 FEATURES = """
@@ -386,20 +387,30 @@ def main():
         lsbs[nme] = int(bp.bounds[0]) if bp.bounds else 0
     fb.setupHorizontalMetrics({nme: (advances[nme], lsbs[nme]) for nme in order})
     fb.setupHorizontalHeader(ascent=ascent, descent=descent, lineGap=0)
-    fb.setupNameTable(dict(familyName=fam, styleName=style,
-                           uniqueFontIdentifier=fam + " 0.1",
-                           fullName=f"{fam} {style}", psName=fam.replace(" ", "") + "-" + style.replace(" ", ""),
-                           version="Version 0.100",
-                           description=("Reconstructed from William Caslon's 1734 specimen sheet "
-                                        "(McGill University Library copies, 600 ppi). Each glyph is "
-                                        "the registered average of every impression on three copies; "
-                                        "spacing solved from printed neighbours. 1000 units = measured "
-                                        "Pica body.")))
-    fb.setupOS2(sTypoAscender=ascent, sTypoDescender=descent, sTypoLineGap=0,
-                usWinAscent=max(ascent, int(max(h for h, _ in highs)) + 10),
-                usWinDescent=max(-descent, int(-min(l for l, _ in lows)) + 10),
-                fsSelection=(0x01 if slant else 0x40) | 0x80)
+    # Windows links a family's styles by name ID 2, which must read Regular or Italic
+    # for Ctrl+I to find the italic; the typographic name keeps "Roman". Profile win_meta
+    # (off for Caslon, whose release_names.py applies these fixes after the build).
+    WIN = _prof.get("win_meta")
+    names = dict(familyName=fam, styleName=("Regular" if style == "Roman" else style) if WIN else style,
+                 uniqueFontIdentifier=fam + " 0.1",
+                 fullName=f"{fam} {style}", psName=fam.replace(" ", "") + "-" + style.replace(" ", ""),
+                 version="Version 0.100", description=_prof.get("description"))
+    if WIN:
+        names.update(typographicFamily=fam, typographicSubfamily=style)
+    fb.setupNameTable(names)
+    os2 = dict(sTypoAscender=ascent, sTypoDescender=descent, sTypoLineGap=0,
+               usWinAscent=max(ascent, int(max(h for h, _ in highs)) + 10),
+               usWinDescent=max(-descent, int(-min(l for l, _ in lows)) + 10),
+               fsSelection=(0x01 if slant else 0x40) | 0x80)
+    if WIN:
+        # Latin-1 code page: without it Windows applications (Word) treat the
+        # font as unable to set Western text and substitute another
+        os2.update(ulCodePageRange1=0x1, ulCodePageRange2=0, fsType=0)
+    fb.setupOS2(**os2)
     fb.setupPost(italicAngle=-slant)
+    if WIN:
+        fb.font["head"].macStyle = 0x02 if slant else 0x00
+        fb.font["OS/2"].version = 4          # fsSelection bit 7 (USE_TYPO_METRICS) needs v4
     have = set(order)
     letters = " ".join(x for x in "a b c d e f g h i j k l m n o p q r s t u v w x y z edieresis icircumflex longs".split() if x in have)
     nolong = " ".join(x for x in "b f k".split() if x in have)
